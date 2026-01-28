@@ -1,0 +1,27 @@
+PODS:
+  - FabricInputPassword (0.1.0)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+
+DEPENDENCIES:
+  - FabricInputPassword (from `../`)
+  - FBSnapshotTestCase (~> 2.1.4)
+
+SPEC REPOS:
+  trunk:
+    - FBSnapshotTestCase
+
+EXTERNAL SOURCES:
+  FabricInputPassword:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FabricInputPassword: 8cf3d738beb463e3ddf5fd5087dd88f6003a4fe4
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+
+PODFILE CHECKSUM: 93312d7840bab8b3208a9bd92f85aa494080c96d
+
+COCOAPODS: 1.16.2

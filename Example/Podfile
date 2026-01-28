@@ -1,0 +1,39 @@
+use_frameworks!
+
+platform :ios, '13.0'
+
+target 'FabricInputPassword_Example' do
+  pod 'FabricInputPassword', :path => '../'
+
+  target 'FabricInputPassword_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
+
+post_install do |installer_representation|
+    installer_representation.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+
+        # fix Podspec Resource Bundle requires a development team
+        if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+          target.build_configurations.each do |config|
+            config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+          end
+        end
+        
+        # fix dyld: Library not loaded: /usr/lib/swift/libswiftCoreGraphics.dylib
+        ocPods = ['DZNEmptyDataSet','FLEX','KSCrash','LLDynamicLaunchScreen','MGBaseKit','MJRefresh','RongCloudOpenSource','SDCycleScrollView','SDWebImage','SensorsAnalyticsSDK','WechatOpenSDK','YYModel','YYText']
+        if !ocPods.include?(target.name)
+          target.build_configurations.each do |config|
+            config.build_settings['OTHER_LDFLAGS'] ||= '$(inherited) -Wl,-weak-lswiftCoreGraphics'
+          end
+        end
+        
+    end
+    
+    
+end
