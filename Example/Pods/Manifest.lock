@@ -5,14 +5,19 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
+  - SwiftyRSA (1.7.0):
+    - SwiftyRSA/ObjC (= 1.7.0)
+  - SwiftyRSA/ObjC (1.7.0)
 
 DEPENDENCIES:
   - FabricInputPassword (from `../`)
   - FBSnapshotTestCase (~> 2.1.4)
+  - SwiftyRSA
 
 SPEC REPOS:
   trunk:
     - FBSnapshotTestCase
+    - SwiftyRSA
 
 EXTERNAL SOURCES:
   FabricInputPassword:
@@ -21,7 +26,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FabricInputPassword: 8cf3d738beb463e3ddf5fd5087dd88f6003a4fe4
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
 
-PODFILE CHECKSUM: 93312d7840bab8b3208a9bd92f85aa494080c96d
+PODFILE CHECKSUM: 664dc99b8c945d05862691b1b858c00de557e8ce
 
 COCOAPODS: 1.16.2

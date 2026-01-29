@@ -175,16 +175,6 @@ public class RSAKeyManager {
         return try createPublicKey(from: keyData)
     }
     
-    /// 从PEM格式导入私钥（支持PKCS#1和PKCS#8格式）
-    public static func importPrivateKeyFromPEM(_ pemString: String) throws -> SecKey {
-        // 提取Base64部分
-        let base64String = try extractBase64FromPEM(pemString, isPrivate: true)
-        guard let derData = Data(base64Encoded: base64String) else {
-            throw RSAError.invalidBase64
-        }
-        
-        return try createPrivateKey(from: derData)
-    }
     
     /// 从模数和指数导入公钥
     public static func importPublicKeyFromModulusAndExponent(modulus: Data, exponent: Data) throws -> SecKey {
@@ -363,23 +353,6 @@ public class RSAKeyManager {
         return key
     }
     
-    /// 创建私钥SecKey对象
-    private static func createPrivateKey(from keyData: Data) throws -> SecKey {
-        let attributes: [String: Any] = [
-            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
-            kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
-            kSecAttrKeySizeInBits as String: 2048, // 自动检测
-            kSecReturnPersistentRef as String: true
-        ]
-        
-        var error: Unmanaged<CFError>?
-        guard let key = SecKeyCreateWithData(keyData as CFData,
-                                            attributes as CFDictionary,
-                                            &error) else {
-            throw error?.takeRetainedValue() as Error? ?? RSAError.keyImportFailed
-        }
-        return key
-    }
     
     /// 编码ASN.1长度
     private static func encodeLength(_ length: Int) -> Data {

@@ -30,15 +30,32 @@ public class PasswordInputViewController: UIViewController {
     private var keyboardView: SecurityKeyboardView!
     private var isVerifying = false
     
+    // MARK: - 窗口显示相关属性
+    private var customWindow: UIWindow?
+    private var isPresentedInWindow = false
+    
     // MARK: - UI组件
     
-    private let containerView: UIView = {
-        let view = UIView()
+    private lazy var containerView: UIView = {
+        let view = self.securityView
         view.backgroundColor = .white
         view.layer.cornerRadius = 16
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // 只圆角顶部两个角
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let securityView: UIView  = {
+        let field = UITextField()
+        field.isSecureTextEntry = true
+        guard let view = field.subviews.first else {
+            return UIView()
+        }
+        view.subviews.forEach { $0.removeFromSuperview() }
+        view.isUserInteractionEnabled = true
+        view.backgroundColor = .clear
+        view.isHidden = false
         return view
     }()
     
@@ -99,6 +116,50 @@ public class PasswordInputViewController: UIViewController {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
+    
+    // MARK: - 窗口显示方法
+    
+    /// 在新窗口中显示密码输入界面
+    /// - Parameters:
+    ///   - windowLevel: 窗口层级，默认为 .alert + 1，确保在最上层
+    ///   - completion: 完成回调
+    public func showInNewWindow(windowLevel: UIWindow.Level = UIWindowLevelStatusBar + 1, completion: (() -> Void)? = nil) {
+        guard customWindow == nil else {
+            print("PasswordInputViewController is already shown in a window")
+            return
+        }
+        
+        // 创建 FabricNavigationController
+        let navi = FabricNavigationController(rootViewController: self)
+        
+        // 创建新窗口
+        if #available(iOS 13.0, *) {
+            // iOS 13+ 使用场景
+            if let windowScene = UIApplication.shared.connectedScenes
+                .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                customWindow = UIWindow(windowScene: windowScene)
+            } else {
+                customWindow = UIWindow(frame: UIScreen.main.bounds)
+            }
+        } else {
+            // iOS 12 及以下
+            customWindow = UIWindow(frame: UIScreen.main.bounds)
+        }
+        
+        guard let window = customWindow else { return }
+        
+        // 配置窗口
+        window.windowLevel = windowLevel
+        window.backgroundColor = .clear
+        window.rootViewController = navi
+        window.isHidden = false
+        window.makeKeyAndVisible()
+        
+        isPresentedInWindow = true
+        
+        completion?()
+    }
+    
     
     // MARK: - 初始化
     
@@ -275,8 +336,8 @@ public class PasswordInputViewController: UIViewController {
             
             // 活动指示器约束 - 在密码输入视图旁边
             activityIndicator.centerYAnchor.constraint(equalTo: passwordInputView.centerYAnchor),
-            activityIndicator.leadingAnchor.constraint(equalTo: passwordInputView.trailingAnchor, constant: 16),
-            
+            activityIndicator.centerXAnchor.constraint(equalTo: passwordInputView.centerXAnchor),
+
             // 键盘约束 - 使用灵活的高度约束
             keyboardView.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 16),
             keyboardView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
@@ -290,11 +351,6 @@ public class PasswordInputViewController: UIViewController {
     private func setupActions() {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordTapped), for: .touchUpInside)
-        
-        // 添加点击背景关闭的手势
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
-        tapGesture.delegate = self
-        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - 动作处理
@@ -303,36 +359,39 @@ public class PasswordInputViewController: UIViewController {
         if let closeHandler = closeButtonHandler {
             closeHandler()
         } else {
-            dismissWithAnimation()
+            hide()
         }
     }
     
     @objc private func forgotPasswordTapped() {
         if let forgotHandler = forgotPasswordHandler {
             forgotHandler()
-        } else {
-            // 默认行为：打开忘记密码网页
-            openForgotPasswordWebPage()
         }
     }
     
-    @objc private func backgroundTapped(_ gesture: UITapGestureRecognizer) {
-        if let backgroundHandler = backgroundTapHandler {
-            backgroundHandler()
+    
+    public func hide() {
+        if isPresentedInWindow {
+            dismissFromWindow()
         } else {
             dismissWithAnimation()
         }
     }
     
-    private func openForgotPasswordWebPage() {
-        guard let url = URL(string: "https://example.com/forgot-password") else { return }
+    /// 关闭窗口显示
+    private func dismissFromWindow() {
+        guard isPresentedInWindow, let window = customWindow else { return }
         
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        dismissWithAnimation { [weak self] in
+            guard let self else { return }
+            window.isHidden = true
+            window.rootViewController = nil
+            self.customWindow = nil
+            self.isPresentedInWindow = false
         }
     }
     
-    private func dismissWithAnimation() {
+    private func dismissWithAnimation(complete: (() -> Void)? = nil) {
         // 执行从上到下的消失动画
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
             // 容器视图滑出到屏幕下方
@@ -343,6 +402,7 @@ public class PasswordInputViewController: UIViewController {
         } completion: { _ in
             // 动画完成后真正 dismiss
             self.dismiss(animated: false, completion: nil)
+            complete?()
         }
     }
     
@@ -401,7 +461,7 @@ public class PasswordInputViewController: UIViewController {
         if isValid {
             // 验证成功
             completionHandler(password, true)
-            dismissWithAnimation()
+            hide()
         } else {
             // 验证失败
             showError("密码错误，请重新输入")
@@ -413,11 +473,16 @@ public class PasswordInputViewController: UIViewController {
 // MARK: - PasswordInputViewDelegate
 
 extension PasswordInputViewController: PasswordInputViewDelegate {
-    func passwordInputView(_ view: PasswordInputView, didEnterPassword password: String) {
+    func passwordInputView(_ view: PasswordInputView, didEnterPassword password: [Int]) {
         if password.count == passwordLength {
             // 密码输入完成，开始验证
-            validatePassword(password)
+            validatePassword(getPasswordString(password))
         }
+    }
+    
+    /// 获取密码字符串（仅在需要时转换）
+    func getPasswordString(_ password: [Int]) -> String {
+        return password.map { String($0) }.joined()
     }
     
     func passwordInputViewDidBeginEditing(_ view: PasswordInputView) {
@@ -425,7 +490,7 @@ extension PasswordInputViewController: PasswordInputViewDelegate {
         errorLabel.isHidden = true
     }
     
-    func passwordInputViewDidChange(_ view: PasswordInputView, password: String) {
+    func passwordInputViewDidChange(_ view: PasswordInputView, password: [Int]) {
         // 密码变化时更新UI
         // 可以在这里添加实时验证逻辑
     }
@@ -447,10 +512,4 @@ extension PasswordInputViewController: SecurityKeyboardViewDelegate {
     }
 }
 
-// MARK: - UIGestureRecognizerDelegate
-extension PasswordInputViewController: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return touch.view == view
-    }
-}
 

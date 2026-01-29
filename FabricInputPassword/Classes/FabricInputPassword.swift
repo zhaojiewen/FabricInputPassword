@@ -5,7 +5,7 @@ import UIKit
 public class FabricInputPassword: NSObject {
     
     
-    /// 显示密码输入页面（带异步验证）
+    /// 显示密码输入页面
     /// - Parameters:
     ///   - viewController: 要present的视图控制器
     ///   - passwordLength: 密码长度，默认为6
@@ -14,11 +14,12 @@ public class FabricInputPassword: NSObject {
     ///   - asyncValidator: 异步验证闭包
     ///   - completion: 完成回调，返回输入的密码和验证结果
     @objc public static func showPasswordInput(from viewController: UIViewController,
-                                              passwordLength: Int = 6,
-                                              title: String? = "请输入密码",
-                                              subtitle: String? = nil,
-                                              asyncValidator: @escaping (String, @escaping (Bool) -> Void) -> Void,
-                                              completion: @escaping (String, Bool) -> Void) {
+                                               passwordLength: Int = 6,
+                                               title: String? = "请输入密码",
+                                               subtitle: String? = nil,
+                                               forgotPasswordHandler: ForgotPasswordHandler? = nil,
+                                               asyncValidator: @escaping (String, @escaping (Bool) -> Void) -> Void,
+                                               completion: @escaping (String, Bool) -> Void) {
         let passwordVC = PasswordInputViewController(
             passwordLength: passwordLength,
             title: title,
@@ -28,7 +29,36 @@ public class FabricInputPassword: NSObject {
         
         // 设置异步验证器
         passwordVC.asyncValidator = asyncValidator
-        viewController.present(passwordVC, animated: true, completion: nil)
+        passwordVC.forgotPasswordHandler = forgotPasswordHandler
+        
+        viewController.present(FabricNavigationController(rootViewController: passwordVC), animated: false, completion: nil)
+    }
+    
+    /// 显示密码输入页面
+    /// - Parameters:
+    ///   - windowLevel: 新Window的等级
+    ///   - passwordLength: 密码长度，默认为6
+    ///   - title: 标题
+    ///   - subtitle: 副标题
+    ///   - asyncValidator: 异步验证闭包
+    ///   - completion: 完成回调，返回输入的密码和验证结果
+    @objc public static func showInNewWindow(windowLevel: UIWindow.Level = UIWindowLevelStatusBar + 1,
+                                             passwordLength: Int = 6,
+                                             title: String? = "请输入密码",
+                                             subtitle: String? = nil,
+                                             forgotPasswordHandler: ForgotPasswordHandler? = nil,
+                                             asyncValidator: @escaping (String, @escaping (Bool) -> Void) -> Void,
+                                             completion: @escaping (String, Bool) -> Void) {
+        let passwordVC = PasswordInputViewController(
+            passwordLength: passwordLength,
+            title: title,
+            subtitle: subtitle,
+            completion: completion
+        )
+        
+        passwordVC.asyncValidator = asyncValidator
+        passwordVC.forgotPasswordHandler = forgotPasswordHandler
+        passwordVC.showInNewWindow(windowLevel: windowLevel, completion: nil)
     }
     
 }

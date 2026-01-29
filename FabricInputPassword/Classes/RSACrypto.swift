@@ -252,19 +252,6 @@ public class RSACrypto {
         return try smartEncrypt(string, publicKey: publicKey, configuration: configuration)
     }
     
-    /// 原始解密方法
-    public static func decrypt(_ data: Data,
-                              privateKey: SecKey,
-                              configuration: Configuration = .default) throws -> Data {
-        return try smartDecrypt(data, privateKey: privateKey, configuration: configuration)
-    }
-    
-    /// 原始解密字符串方法
-    public static func decrypt(_ base64String: String,
-                              privateKey: SecKey,
-                              configuration: Configuration = .default) throws -> String {
-        return try smartDecrypt(base64String, privateKey: privateKey, configuration: configuration)
-    }
 }
 
 // MARK: - 签名和验证
@@ -361,60 +348,4 @@ extension RSACrypto {
         }
     }
     
-    /// 异步智能解密
-    public static func smartDecryptAsync(_ data: Data,
-                                        privateKey: SecKey,
-                                        configuration: Configuration = .default,
-                                        completion: @escaping (Result<Data, Error>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                let result = try smartDecrypt(data, privateKey: privateKey, configuration: configuration)
-                DispatchQueue.main.async {
-                    completion(.success(result))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
-    
-    /// 异步加密字符串
-    public static func encryptAsync(_ string: String,
-                                   publicKey: SecKey,
-                                   configuration: Configuration = .default,
-                                   completion: @escaping (Result<String, Error>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                let result = try encrypt(string, publicKey: publicKey, configuration: configuration)
-                DispatchQueue.main.async {
-                    completion(.success(result))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
-    
-    /// 异步解密字符串
-    public static func decryptAsync(_ base64String: String,
-                                   privateKey: SecKey,
-                                   configuration: Configuration = .default,
-                                   completion: @escaping (Result<String, Error>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                let result = try decrypt(base64String, privateKey: privateKey, configuration: configuration)
-                DispatchQueue.main.async {
-                    completion(.success(result))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }
-    }
 }

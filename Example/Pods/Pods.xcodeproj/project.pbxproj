@@ -7,136 +7,188 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0071BAAB6CF62603EEE51C989C127BC4 /* RSAKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01140FF8E96B2DF9394A57AA6FABF8CC /* RSAKeyManager.swift */; };
 		017E77BEFB0B630D2A7E4EB8D68EF63F /* Pods-FabricInputPassword_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BEF85B7C266C87BDDD5C8F8069B56C /* Pods-FabricInputPassword_Tests-dummy.m */; };
-		0AE1FFAA4390B36294D9A3C1E9A2D181 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BC96F34E43FA0A3AE93B3C2C4595E5 /* XCTest.framework */; };
-		12C8FD3D06F867281B3C87497145DC65 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = FEE661E58CA6655B39AA49AA4C021C33 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1AA243B9ADD9605C1EB79DC5FDE624C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D29656528FA94A71ECFB8FEB6DC0B /* Foundation.framework */; };
-		1E7350E8555009AF09D21562FC67B60A /* FabricInputPassword-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E46B4E908C85C1ABECF265AF518ED1B7 /* FabricInputPassword-dummy.m */; };
-		267AEE0BF1514767DD64B50559013EB3 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B7EA746BF6557FD565BAE12AF9198 /* FBSnapshotTestController.m */; };
-		293A1D75533D730C4F78D16E8B4A0500 /* FabricInputPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B6BA46D944C21031E93E919265016 /* FabricInputPassword.swift */; };
-		2A9183C1543AECF58D4608424633C5E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D29656528FA94A71ECFB8FEB6DC0B /* Foundation.framework */; };
-		33E349E32C64A93B3CAC6A2667583E98 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6B5E773973965C73BC40D4388B4C07 /* QuartzCore.framework */; };
-		371851554665F9D2084776C75B8FAB8F /* SecurityKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC805BD5D2EACD9803EAE5D87FEEF830 /* SecurityKeyboardView.swift */; };
-		376B6CF16CD43691B0830142056C39EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D29656528FA94A71ECFB8FEB6DC0B /* Foundation.framework */; };
-		3777A70A61ED49FCDDB07BE5F0A1C4B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4138A0A13FF7F7B73435E87E54C56C18 /* UIKit.framework */; };
-		3BF27A2A6F27DCE9645039383FCE19F0 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E5923010B02074CAA9AAF6EA02D66AA /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		44FBB5BEA4B1365B83D65468462E257E /* Pods-FabricInputPassword_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0E347E17E4A2F3DA56420B97EEF19E /* Pods-FabricInputPassword_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55D9D4D1609F1F4929E1BA1A1B562445 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */; };
-		593CC778281D0C5DAFD70A5E285DA86A /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */; };
-		5FFDEBA025674FE6C67184DB760D3E6C /* PasswordInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3B87E9AAF14295013553F01F71CC66 /* PasswordInputViewController.swift */; };
-		64066CA793C90CA645A6D2031654D2CC /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 284833D18C244D2B42966B6EE425AA59 /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		76085620117E839C450E794DB3773D79 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 88B1DEEBF6316A84D7413645212492FF /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		766F6429966FBFF2E2E6A2991BDAFDA9 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */; };
-		7CA66236CDA347ACA342DBCAA0F75C7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D29656528FA94A71ECFB8FEB6DC0B /* Foundation.framework */; };
-		8FD1AB468AF7F87112C3674006F6BC6E /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D66CF296ABBC57EC4D0452397E235 /* SwiftSupport.swift */; };
-		9454CB6E40E680A6028628AD5C5BF8C6 /* RSACrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D606C4AA13AB199BBA21D945C89E2 /* RSACrypto.swift */; };
-		AEFB700F9EE77EE9848A8AC8C3F00A7F /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB3EB3CCC5BCA82F40FE8DC87BB778 /* FBSnapshotTestCasePlatform.m */; };
-		BFF2F5B17F34F962FFB7299782967345 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2649279677DDA0A510A5AD8AEF06AE2 /* PasswordInputView.swift */; };
+		02F50E6E54E9E37868D2788A830675BC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E84B31BF30F2B4B11C24F4CF26507B4 /* Message.swift */; };
+		03BC0BB9914E02F08A62576F8B4F9ECC /* SwiftyRSA+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2450D721C77F95EC6B8DCE2B1904AD7 /* SwiftyRSA+ObjC.swift */; };
+		0AE1FFAA4390B36294D9A3C1E9A2D181 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E2E2404DD4E96C82E13C0DCA1EA372 /* XCTest.framework */; };
+		12C8FD3D06F867281B3C87497145DC65 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 88A5A243AF6E68CDB316B9EFDF8E195E /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A15585A37ED5C4CB4C1D3438EFA9CEE /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2BF762822595976AECD68CC5F29C05 /* PasswordValidator.swift */; };
+		1B0B0143E80BFEC3A92DAE9E2BFFE2FA /* SwiftyRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D1F31502D2C0D774E3F1333E05C3F09 /* SwiftyRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		267AEE0BF1514767DD64B50559013EB3 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C3707C41A3DD026883C18F725328C8 /* FBSnapshotTestController.m */; };
+		2A9183C1543AECF58D4608424633C5E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */; };
+		2C48DFABADF6992E6B78A9B70DBDFF1C /* Pods-FabricInputPassword_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D1D91A1C024EB391CCD38496A37CB3 /* Pods-FabricInputPassword_Example-dummy.m */; };
+		2EEF4C5B43244E1009D844E2F175823F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B1B83340AC1475879944A2A78F100A /* Security.framework */; };
+		30BEA1027C41AC14128FA4DFE009FAFC /* FabricInputPassword-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C1590A05E295FDCE19A2DAF12632DEE0 /* FabricInputPassword-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		33E349E32C64A93B3CAC6A2667583E98 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1FF6F24BEB78DEC400DF702E475C8B0 /* QuartzCore.framework */; };
+		367AFE43234D7260D89660902B227513 /* NSData+SHA.h in Headers */ = {isa = PBXBuildFile; fileRef = CCA4C9698BEF74EFB89E688809E12699 /* NSData+SHA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3777A70A61ED49FCDDB07BE5F0A1C4B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E40A69856A9EF95EA7E1B646DE67EDBC /* UIKit.framework */; };
+		39DC3A8465AC9412020986F79582D2B4 /* FabricInputPassword-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D78A784E0DA4EB22251991CDD5C262C /* FabricInputPassword-dummy.m */; };
+		3B7C949DC692AA5229DE472DA90DAA2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */; };
+		3BF27A2A6F27DCE9645039383FCE19F0 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2512B60B0DF863FA672D6FE05E0AC1E2 /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E44A33379B0E13E26BE123C3BD0581F /* X509Certificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34174A2508D4D3CB90062A55C9E0E16F /* X509Certificate.swift */; };
+		3EEF784D625AC8E3DE49D455DC63A52F /* FabricInputPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC0897D0750FE5CE9EBDE1CD2557637 /* FabricInputPassword.swift */; };
+		45FA43CA8374D37EFBE703D9CB054573 /* RSAKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5B376E4BA0845622B5157012E0B6FD /* RSAKeyManager.swift */; };
+		4B6865A97A9C390EE1CF6CB13003899D /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155A764FFB0399F435B00F0E09A57558 /* PasswordInputView.swift */; };
+		55D9D4D1609F1F4929E1BA1A1B562445 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6987D22860AA6377B63B35092FA41257 /* FBSnapshotTestCase.m */; };
+		593CC778281D0C5DAFD70A5E285DA86A /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 873D447BB1A99C7D28F60D1D32F175E1 /* UIImage+Compare.m */; };
+		5AEF3935F2125721B98DB2F03122A73A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */; };
+		61F1373EAE61C90D532E01D02D3158A5 /* ClearMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7E44CF6D717D05FBEE48FA746782D /* ClearMessage.swift */; };
+		64066CA793C90CA645A6D2031654D2CC /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D39EFA7422078042A00B79D3766DCAF /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6FC18DB612A694665870035E0A33C2FD /* SwiftyRSA-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DAF3334961E431716F0E687C6E18E45 /* SwiftyRSA-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74F9C91538D58DBE4661294933D97860 /* EncryptedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C23B628C123E6B1229453392FE374CD /* EncryptedMessage.swift */; };
+		76085620117E839C450E794DB3773D79 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = B86CB50890B584F862C90285B912F117 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		766F6429966FBFF2E2E6A2991BDAFDA9 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F197B6007A42BB63AAEA77DB77FBE9 /* UIImage+Diff.m */; };
+		7A319A01CA649C592A1012F6F107F163 /* SwiftyRSAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FEFCC83A28FCC81EACEFCA65CE1AD /* SwiftyRSAError.swift */; };
+		7CA66236CDA347ACA342DBCAA0F75C7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */; };
+		8C3FF83147AAF2C4A3F87512FBDD4CC3 /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924E32FC5CB607DE5DC6235E938AEAB /* PrivateKey.swift */; };
+		8CD16F087F46BE8E175B199BA55D6BC2 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EDBFE7AA99850BE49C183806641708 /* PublicKey.swift */; };
+		8FD1AB468AF7F87112C3674006F6BC6E /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBBCC2A87D651D53F8E90BC3F104DC /* SwiftSupport.swift */; };
+		95290CFAC182811AF3B7D105DA0D0047 /* NSData+SHA.m in Sources */ = {isa = PBXBuildFile; fileRef = B433AF454A5C63AEA1C46EA2930D1A4E /* NSData+SHA.m */; };
+		976A8B94538E88B0EF6275A6F7D21BF8 /* Asn1Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04217FE75CAFC6764B5F97BEF1B2A17 /* Asn1Parser.swift */; };
+		9935FDCD8193660746C5B55F9B328FE6 /* PasswordInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD38E86F1A68A18F37C4428EDCB896 /* PasswordInputViewController.swift */; };
+		9EFE01692D6DF9FAD756AF76D4298E42 /* RSACrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701CFB8505F2C2399B4F7573BE3C9B9 /* RSACrypto.swift */; };
+		A1D6973EECCBB1F770F2010E529C1EC2 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859E057C8DC7BA4CC72B8224C2CAFC5 /* Signature.swift */; };
+		AC0F0963C4E4FA53826B6ECF27EDDEDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */; };
+		AE3D1AC12B5937F37B8F5A7B29588579 /* SwiftyRSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25EE1E91BF90D8C9110A353ADC02964 /* SwiftyRSA.swift */; };
+		AEFB700F9EE77EE9848A8AC8C3F00A7F /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = E583DD521EFC80DF06BF050AADA541BD /* FBSnapshotTestCasePlatform.m */; };
+		B222FABCCC683456523BFA1E33A4E618 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D522269FA7CFF0785342E9F3F43C235 /* Key.swift */; };
 		C2B127CFFF82A5FEB468B1FE30CAEDA6 /* Pods-FabricInputPassword_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF549355741E88215073BF10DA8A45A /* Pods-FabricInputPassword_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE0DC4614B4FF855B2101D7F74A710AC /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F538C426803AE34255FC6E35B408CCA /* UIApplication+StrictKeyWindow.m */; };
-		CF65A6A0F5F9A6A9FBF5501610AAD758 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE9FF9459FBCDC4AF88FB6B5A4CC1439 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DA747A80391988F1202FF4989A0E12CF /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DBE14887806D19461FA6E2FF263107D1 /* Pods-FabricInputPassword_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D1D91A1C024EB391CCD38496A37CB3 /* Pods-FabricInputPassword_Example-dummy.m */; };
-		DCB4ADD5DC58A7B3F7CFB8A63DF94DB5 /* FabricInputPassword-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A7FE698A99F0BAA5833F9EDC06086A /* FabricInputPassword-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E12CED2725FEB94F24242463A19B753F /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A1C45FE5D6F555571E41CCA0136EE /* PasswordValidator.swift */; };
-		E4F6CF5EA1B12C55385D3CDC6BD1F4D8 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E759C2EC9B730E3C9C562BBB533B85DC /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */; };
-		EA5924031A71EF807EC467903E26FAC0 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D872A3EE224412D4057C234FBC629F9C /* UIImage+Snapshot.m */; };
-		F822382AB9E7B343C04964B313B1743D /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 96187BF3038121CC146335E9FF0B0AFF /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C384A96B816E05EF6A70FB751BEF4351 /* FabricNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE906EADF221168AF03B11386A2158BB /* FabricNavigationController.swift */; };
+		CE0DC4614B4FF855B2101D7F74A710AC /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC59160EC009BEA083AF144FC2E98A4 /* UIApplication+StrictKeyWindow.m */; };
+		CECD8BC3AE146D4F8DF432FC8A775C03 /* SwiftyRSA-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A9E7DF02F3CC5B474EE61A2C5035F /* SwiftyRSA-dummy.m */; };
+		CF65A6A0F5F9A6A9FBF5501610AAD758 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB2839EC8ED0E9C180151BF80BE7BE8 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA747A80391988F1202FF4989A0E12CF /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 05DF1721FD938C8D7B6D7FA56C779B99 /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E4F6CF5EA1B12C55385D3CDC6BD1F4D8 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CB86FC2D7DB05A5DDFE17B0A82795F /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E759C2EC9B730E3C9C562BBB533B85DC /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3AAFDA99EE37BC05F4D944FB053A2C /* FBSnapshotTestCase-dummy.m */; };
+		EA5924031A71EF807EC467903E26FAC0 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F7C0103EF532CBE37FBC817DBFA27 /* UIImage+Snapshot.m */; };
+		F42A10708C34C0F19D5476CD1F188AE7 /* Pods-FabricInputPassword_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0E347E17E4A2F3DA56420B97EEF19E /* Pods-FabricInputPassword_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4BCD5E8CDF9B1C4EF3629C142A5160F /* SecurityKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA9EC47B0C15A868DF7F0F8F116D97 /* SecurityKeyboardView.swift */; };
+		F822382AB9E7B343C04964B313B1743D /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FB30CB1EA0D22F1589A2EAE0162C /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4C4EC922A6A5B47406B4BB415BDE5ADD /* PBXContainerItemProxy */ = {
+		17BCBA6AAE1D89E0A90B4FFE7DE8C667 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 018A75462939F6F8919E9EC6C1133AAC;
-			remoteInfo = "Pods-FabricInputPassword_Example";
+			remoteGlobalIDString = 92A1C13902E7ACDA3ABB5BA1FEACC86C;
+			remoteInfo = SwiftyRSA;
 		};
-		BB4AF3BD31664D6F3317A1569411A7DD /* PBXContainerItemProxy */ = {
+		1C871732F4E48EC9227F7063212781B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1E2EDE5952DE95E8D6814D61633A5147;
 			remoteInfo = FabricInputPassword;
 		};
-		FDF596ACA4C2A2A30BBFC32F5EB03583 /* PBXContainerItemProxy */ = {
+		7186630156CA9CB854E6D85AAF1020E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 98A98149697C80CEF8D5772791E92E66;
 			remoteInfo = FBSnapshotTestCase;
 		};
+		C6A0435D3BFF37117798ED5F1E640074 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 018A75462939F6F8919E9EC6C1133AAC;
+			remoteInfo = "Pods-FabricInputPassword_Example";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01140FF8E96B2DF9394A57AA6FABF8CC /* RSAKeyManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSAKeyManager.swift; path = FabricInputPassword/Classes/RSAKeyManager.swift; sourceTree = "<group>"; };
-		0C69BEFA650FED2AC76E54F59C6B2100 /* FabricInputPassword-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FabricInputPassword-Info.plist"; sourceTree = "<group>"; };
+		05DF1721FD938C8D7B6D7FA56C779B99 /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
+		09893BEBA28965B0C01A7593F78E0305 /* FabricInputPassword.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FabricInputPassword.release.xcconfig; sourceTree = "<group>"; };
+		0BD73BE4C2BF2D90891691936C99A3C8 /* FabricInputPassword.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FabricInputPassword.debug.xcconfig; sourceTree = "<group>"; };
 		0CA52BCC5405C566B0B51D7EAB4D0389 /* Pods-FabricInputPassword_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FabricInputPassword_Tests-Info.plist"; sourceTree = "<group>"; };
-		0F538C426803AE34255FC6E35B408CCA /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
-		1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
-		235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
-		26BC96F34E43FA0A3AE93B3C2C4595E5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
-		284833D18C244D2B42966B6EE425AA59 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
+		0DA4828908E30CE4A29CB9AD3A405635 /* SwiftyRSA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyRSA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		155A764FFB0399F435B00F0E09A57558 /* PasswordInputView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordInputView.swift; path = FabricInputPassword/Classes/PasswordInputView.swift; sourceTree = "<group>"; };
+		1BB2839EC8ED0E9C180151BF80BE7BE8 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
+		1CC59160EC009BEA083AF144FC2E98A4 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
+		1DAF3334961E431716F0E687C6E18E45 /* SwiftyRSA-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyRSA-umbrella.h"; sourceTree = "<group>"; };
+		1DC0897D0750FE5CE9EBDE1CD2557637 /* FabricInputPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FabricInputPassword.swift; path = FabricInputPassword/Classes/FabricInputPassword.swift; sourceTree = "<group>"; };
+		1ECD3813A4B7E5CB6A80844B489FC3E7 /* FBSnapshotTestCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.debug.xcconfig; sourceTree = "<group>"; };
+		24C86C31601E844DB30A1F0A339C0E01 /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
+		2512B60B0DF863FA672D6FE05E0AC1E2 /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
+		2701CFB8505F2C2399B4F7573BE3C9B9 /* RSACrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSACrypto.swift; path = FabricInputPassword/Classes/RSACrypto.swift; sourceTree = "<group>"; };
+		2D522269FA7CFF0785342E9F3F43C235 /* Key.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Key.swift; path = Source/Key.swift; sourceTree = "<group>"; };
+		2E84B31BF30F2B4B11C24F4CF26507B4 /* Message.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Source/Message.swift; sourceTree = "<group>"; };
+		34174A2508D4D3CB90062A55C9E0E16F /* X509Certificate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = X509Certificate.swift; path = Source/X509Certificate.swift; sourceTree = "<group>"; };
+		3924E32FC5CB607DE5DC6235E938AEAB /* PrivateKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrivateKey.swift; path = Source/PrivateKey.swift; sourceTree = "<group>"; };
 		39814310B2E9DD3DE9625DAA382D2E4A /* Pods-FabricInputPassword_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FabricInputPassword_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3A6A1C45FE5D6F555571E41CCA0136EE /* PasswordValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordValidator.swift; path = FabricInputPassword/Classes/PasswordValidator.swift; sourceTree = "<group>"; };
-		3EFC15CB163FD760A630053D2983A6A3 /* FabricInputPassword.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FabricInputPassword.modulemap; sourceTree = "<group>"; };
-		3F0D66CF296ABBC57EC4D0452397E235 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
-		4138A0A13FF7F7B73435E87E54C56C18 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		44968E8B0B7F8533964E69C1E01F0440 /* FabricInputPassword.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FabricInputPassword.release.xcconfig; sourceTree = "<group>"; };
-		4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
-		4675D15D4FE1EEFAD171C74CF77B17DA /* FabricInputPassword-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FabricInputPassword-prefix.pch"; sourceTree = "<group>"; };
-		4BD39E23C547322D946AED2B7A796940 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.release.xcconfig; sourceTree = "<group>"; };
+		3B2A9E7DF02F3CC5B474EE61A2C5035F /* SwiftyRSA-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyRSA-dummy.m"; sourceTree = "<group>"; };
+		45B1B83340AC1475879944A2A78F100A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		483B4E10C2EBAFEDF7EA748CF98DD2DC /* FabricInputPassword.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FabricInputPassword.modulemap; sourceTree = "<group>"; };
+		4AE7E44CF6D717D05FBEE48FA746782D /* ClearMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClearMessage.swift; path = Source/ClearMessage.swift; sourceTree = "<group>"; };
+		533B1A23CF88CEBE3CA1A4938F5E23C7 /* SwiftyRSA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyRSA.release.xcconfig; sourceTree = "<group>"; };
+		57F197B6007A42BB63AAEA77DB77FBE9 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
 		5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E6B5E773973965C73BC40D4388B4C07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		62183BDC4D44A00D2C1DB60F8DDBB231 /* Pods-FabricInputPassword_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FabricInputPassword_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
-		67FEB4CE589CCF257434F2F18E5382C1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		692D29656528FA94A71ECFB8FEB6DC0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6ABB3EB3CCC5BCA82F40FE8DC87BB778 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
+		63CB86FC2D7DB05A5DDFE17B0A82795F /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
+		66822107FAB0AC7FEC4045FE6A98D3D7 /* FBSnapshotTestCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.release.xcconfig; sourceTree = "<group>"; };
+		66FD38E86F1A68A18F37C4428EDCB896 /* PasswordInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordInputViewController.swift; path = FabricInputPassword/Classes/PasswordInputViewController.swift; sourceTree = "<group>"; };
+		6987D22860AA6377B63B35092FA41257 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
+		6A8A7BA118FD9C8A8B90CAF2D432F2C0 /* FabricInputPassword-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FabricInputPassword-prefix.pch"; sourceTree = "<group>"; };
+		6D1F31502D2C0D774E3F1333E05C3F09 /* SwiftyRSA.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwiftyRSA.h; path = Source/SwiftyRSA.h; sourceTree = "<group>"; };
 		6E508FD6D3F3D4A70E4074693A1FEE7F /* Pods-FabricInputPassword_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FabricInputPassword_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		712172461B843C3B7E4F47E22FC7499D /* Pods-FabricInputPassword_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-FabricInputPassword_Example.modulemap"; sourceTree = "<group>"; };
 		72698F0683D2AE1E25FB76B1A6FDCCE3 /* Pods-FabricInputPassword_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FabricInputPassword_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		738D8533F091EB19430592B287B21E0D /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
+		73E2E2404DD4E96C82E13C0DCA1EA372 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		751F17F30D19C3D9B37FCD50AAF5F9F8 /* Pods-FabricInputPassword_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FabricInputPassword_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		763B6BA46D944C21031E93E919265016 /* FabricInputPassword.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FabricInputPassword.swift; path = FabricInputPassword/Classes/FabricInputPassword.swift; sourceTree = "<group>"; };
-		784D606C4AA13AB199BBA21D945C89E2 /* RSACrypto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSACrypto.swift; path = FabricInputPassword/Classes/RSACrypto.swift; sourceTree = "<group>"; };
+		7918BD1E9502FFBBEDFCD20192B5FBD0 /* SwiftyRSA.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftyRSA.modulemap; sourceTree = "<group>"; };
 		7B9649B5DF20058DEA1F6F68E46F44B0 /* Pods-FabricInputPassword_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-FabricInputPassword_Tests.modulemap"; sourceTree = "<group>"; };
-		7E1B7EA746BF6557FD565BAE12AF9198 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
+		814FEFCC83A28FCC81EACEFCA65CE1AD /* SwiftyRSAError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyRSAError.swift; path = Source/SwiftyRSAError.swift; sourceTree = "<group>"; };
+		84EDBFE7AA99850BE49C183806641708 /* PublicKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicKey.swift; path = Source/PublicKey.swift; sourceTree = "<group>"; };
 		86D1D91A1C024EB391CCD38496A37CB3 /* Pods-FabricInputPassword_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FabricInputPassword_Example-dummy.m"; sourceTree = "<group>"; };
-		88B1DEEBF6316A84D7413645212492FF /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		873D447BB1A99C7D28F60D1D32F175E1 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
+		88A5A243AF6E68CDB316B9EFDF8E195E /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 		893F754849DED9BC740F04B3A22F6D78 /* FabricInputPassword.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FabricInputPassword.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0E347E17E4A2F3DA56420B97EEF19E /* Pods-FabricInputPassword_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FabricInputPassword_Example-umbrella.h"; sourceTree = "<group>"; };
-		8E5923010B02074CAA9AAF6EA02D66AA /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
-		9468E867498BBAF36F9AFFE4845F8B09 /* FBSnapshotTestCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.debug.xcconfig; sourceTree = "<group>"; };
-		96187BF3038121CC146335E9FF0B0AFF /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
-		99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
+		8C23B628C123E6B1229453392FE374CD /* EncryptedMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EncryptedMessage.swift; path = Source/EncryptedMessage.swift; sourceTree = "<group>"; };
+		8D78A784E0DA4EB22251991CDD5C262C /* FabricInputPassword-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FabricInputPassword-dummy.m"; sourceTree = "<group>"; };
+		8DCA9EC47B0C15A868DF7F0F8F116D97 /* SecurityKeyboardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecurityKeyboardView.swift; path = FabricInputPassword/Classes/SecurityKeyboardView.swift; sourceTree = "<group>"; };
+		8E5B376E4BA0845622B5157012E0B6FD /* RSAKeyManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSAKeyManager.swift; path = FabricInputPassword/Classes/RSAKeyManager.swift; sourceTree = "<group>"; };
+		9086E0666B8CB342482C307896370929 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		97C070CB9EA1825AEE631B04FC63FE9E /* SwiftyRSA-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftyRSA-Info.plist"; sourceTree = "<group>"; };
+		97DC94C469810BD1DBEB2AF692261F00 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9D39EFA7422078042A00B79D3766DCAF /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9FDE372DBB811FC6279983891566F787 /* Pods_FabricInputPassword_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FabricInputPassword_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF549355741E88215073BF10DA8A45A /* Pods-FabricInputPassword_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FabricInputPassword_Tests-umbrella.h"; sourceTree = "<group>"; };
-		A2649279677DDA0A510A5AD8AEF06AE2 /* PasswordInputView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordInputView.swift; path = FabricInputPassword/Classes/PasswordInputView.swift; sourceTree = "<group>"; };
-		AE9FF9459FBCDC4AF88FB6B5A4CC1439 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
+		A086FB30CB1EA0D22F1589A2EAE0162C /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
+		A34F7C0103EF532CBE37FBC817DBFA27 /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
+		A4C3707C41A3DD026883C18F725328C8 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
+		A5FA5B8F08E20E52A8B1B2DBF288F5A6 /* FBSnapshotTestCase-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FBSnapshotTestCase-Info.plist"; sourceTree = "<group>"; };
+		A8349B20FDD73B8DB19E210472CDCBCE /* SwiftyRSA-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyRSA-prefix.pch"; sourceTree = "<group>"; };
+		AF2BF762822595976AECD68CC5F29C05 /* PasswordValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordValidator.swift; path = FabricInputPassword/Classes/PasswordValidator.swift; sourceTree = "<group>"; };
+		AF3AAFDA99EE37BC05F4D944FB053A2C /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
 		B1E1DE3AE6BEC3D38BE84E68AA4ABC2C /* Pods-FabricInputPassword_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FabricInputPassword_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		B433AF454A5C63AEA1C46EA2930D1A4E /* NSData+SHA.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+SHA.m"; path = "Source/NSData+SHA.m"; sourceTree = "<group>"; };
 		B68720EAF6AB1476713925B6945175CB /* Pods-FabricInputPassword_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FabricInputPassword_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B6BEF85B7C266C87BDDD5C8F8069B56C /* Pods-FabricInputPassword_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FabricInputPassword_Tests-dummy.m"; sourceTree = "<group>"; };
-		B7103CA00AED20722C5B69CA5B4F6938 /* FBSnapshotTestCase-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FBSnapshotTestCase-Info.plist"; sourceTree = "<group>"; };
+		B86CB50890B584F862C90285B912F117 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		C1590A05E295FDCE19A2DAF12632DEE0 /* FabricInputPassword-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FabricInputPassword-umbrella.h"; sourceTree = "<group>"; };
+		C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C7BE563EE5B6C368190C9185D09AAAA3 /* Pods-FabricInputPassword_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FabricInputPassword_Example-Info.plist"; sourceTree = "<group>"; };
 		C83D8F166BAA0A6E23BFF133833D2888 /* Pods-FabricInputPassword_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FabricInputPassword_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CBFF6C5FD9C3A84274A9314D3E940B6E /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
-		D08CEBB9BDD9EF7A662ECFC0305C169E /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
-		D872A3EE224412D4057C234FBC629F9C /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
-		E2287DA8517636F9EF39169487A0ABB2 /* FabricInputPassword.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = FabricInputPassword.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E3A7FE698A99F0BAA5833F9EDC06086A /* FabricInputPassword-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FabricInputPassword-umbrella.h"; sourceTree = "<group>"; };
-		E46B4E908C85C1ABECF265AF518ED1B7 /* FabricInputPassword-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FabricInputPassword-dummy.m"; sourceTree = "<group>"; };
-		E775DA450C4DDC335CF09CC4AEA89D04 /* FabricInputPassword.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FabricInputPassword.debug.xcconfig; sourceTree = "<group>"; };
+		CCA4C9698BEF74EFB89E688809E12699 /* NSData+SHA.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+SHA.h"; path = "Source/NSData+SHA.h"; sourceTree = "<group>"; };
+		CE906EADF221168AF03B11386A2158BB /* FabricNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FabricNavigationController.swift; path = FabricInputPassword/Classes/FabricNavigationController.swift; sourceTree = "<group>"; };
+		D04217FE75CAFC6764B5F97BEF1B2A17 /* Asn1Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Asn1Parser.swift; path = Source/Asn1Parser.swift; sourceTree = "<group>"; };
+		DB7910CB801FA0FBA6F6B3154AF87DFF /* FabricInputPassword.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = FabricInputPassword.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E1FF6F24BEB78DEC400DF702E475C8B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		E40A69856A9EF95EA7E1B646DE67EDBC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		E583DD521EFC80DF06BF050AADA541BD /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
+		E690C009D119172AA43F5ADE96CD36CA /* FabricInputPassword-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FabricInputPassword-Info.plist"; sourceTree = "<group>"; };
 		EA87305306F9124D37A4AD142FB0F315 /* Pods-FabricInputPassword_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FabricInputPassword_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		EACBBCC2A87D651D53F8E90BC3F104DC /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
+		EBBC34A90E7CEEC4636DD98ED9CD0323 /* SwiftyRSA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyRSA.debug.xcconfig; sourceTree = "<group>"; };
 		F1877AEE60F6D4CDE573138CD0A8B715 /* Pods_FabricInputPassword_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FabricInputPassword_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB3B87E9AAF14295013553F01F71CC66 /* PasswordInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PasswordInputViewController.swift; path = FabricInputPassword/Classes/PasswordInputViewController.swift; sourceTree = "<group>"; };
+		F2450D721C77F95EC6B8DCE2B1904AD7 /* SwiftyRSA+ObjC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SwiftyRSA+ObjC.swift"; path = "Source/SwiftyRSA+ObjC.swift"; sourceTree = "<group>"; };
+		F25EE1E91BF90D8C9110A353ADC02964 /* SwiftyRSA.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyRSA.swift; path = Source/SwiftyRSA.swift; sourceTree = "<group>"; };
+		F859E057C8DC7BA4CC72B8224C2CAFC5 /* Signature.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Signature.swift; path = Source/Signature.swift; sourceTree = "<group>"; };
 		FBCE6A90C689448371D9ED4DF2172947 /* Pods-FabricInputPassword_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FabricInputPassword_Example.release.xcconfig"; sourceTree = "<group>"; };
-		FC805BD5D2EACD9803EAE5D87FEEF830 /* SecurityKeyboardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecurityKeyboardView.swift; path = FabricInputPassword/Classes/SecurityKeyboardView.swift; sourceTree = "<group>"; };
-		FEE661E58CA6655B39AA49AA4C021C33 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +197,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9183C1543AECF58D4608424633C5E8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89710D81E204EBB12A8334A22F41044D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AEF3935F2125721B98DB2F03122A73A /* Foundation.framework in Frameworks */,
+				2EEF4C5B43244E1009D844E2F175823F /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,61 +220,82 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BD51CEDD6CD718B971DF9745C548E074 /* Frameworks */ = {
+		A03AF7EB26DCBD9B36944553327B7F15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376B6CF16CD43691B0830142056C39EF /* Foundation.framework in Frameworks */,
+				3B7C949DC692AA5229DE472DA90DAA2F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB9AED22997A9FD32DB7BE430CAE5DC7 /* Frameworks */ = {
+		EB3B29352E406455E4675149CC7E8C14 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AA243B9ADD9605C1EB79DC5FDE624C8 /* Foundation.framework in Frameworks */,
+				AC0F0963C4E4FA53826B6ECF27EDDEDD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4BA2479549DD918290454B1CDCD0B92B /* Core */ = {
+		05BA0616EE2774822D7F41CF0EBE9B04 /* SwiftyRSA */ = {
 			isa = PBXGroup;
 			children = (
-				FEE661E58CA6655B39AA49AA4C021C33 /* FBSnapshotTestCase.h */,
-				277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */,
-				88B1DEEBF6316A84D7413645212492FF /* FBSnapshotTestCasePlatform.h */,
-				6ABB3EB3CCC5BCA82F40FE8DC87BB778 /* FBSnapshotTestCasePlatform.m */,
-				AE9FF9459FBCDC4AF88FB6B5A4CC1439 /* FBSnapshotTestController.h */,
-				7E1B7EA746BF6557FD565BAE12AF9198 /* FBSnapshotTestController.m */,
-				99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */,
-				0F538C426803AE34255FC6E35B408CCA /* UIApplication+StrictKeyWindow.m */,
-				656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */,
-				235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */,
-				96187BF3038121CC146335E9FF0B0AFF /* UIImage+Diff.h */,
-				4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */,
-				284833D18C244D2B42966B6EE425AA59 /* UIImage+Snapshot.h */,
-				D872A3EE224412D4057C234FBC629F9C /* UIImage+Snapshot.m */,
+				D04217FE75CAFC6764B5F97BEF1B2A17 /* Asn1Parser.swift */,
+				4AE7E44CF6D717D05FBEE48FA746782D /* ClearMessage.swift */,
+				8C23B628C123E6B1229453392FE374CD /* EncryptedMessage.swift */,
+				2D522269FA7CFF0785342E9F3F43C235 /* Key.swift */,
+				2E84B31BF30F2B4B11C24F4CF26507B4 /* Message.swift */,
+				CCA4C9698BEF74EFB89E688809E12699 /* NSData+SHA.h */,
+				B433AF454A5C63AEA1C46EA2930D1A4E /* NSData+SHA.m */,
+				3924E32FC5CB607DE5DC6235E938AEAB /* PrivateKey.swift */,
+				84EDBFE7AA99850BE49C183806641708 /* PublicKey.swift */,
+				F859E057C8DC7BA4CC72B8224C2CAFC5 /* Signature.swift */,
+				6D1F31502D2C0D774E3F1333E05C3F09 /* SwiftyRSA.h */,
+				F25EE1E91BF90D8C9110A353ADC02964 /* SwiftyRSA.swift */,
+				814FEFCC83A28FCC81EACEFCA65CE1AD /* SwiftyRSAError.swift */,
+				34174A2508D4D3CB90062A55C9E0E16F /* X509Certificate.swift */,
+				66596C7F75A5E8F274D113CEAB1EA1C8 /* ObjC */,
+				812D41B3EBC9C64C5EE10CA777023753 /* Support Files */,
 			);
-			name = Core;
+			path = SwiftyRSA;
 			sourceTree = "<group>";
 		};
-		52DA87BE234CB324136090697CE66FCB /* FabricInputPassword */ = {
+		33AE0F0360F2660FDFDC9D09F9634941 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FC805BD5D2EACD9803EAE5D87FEEF830 /* SecurityKeyboardView.swift */,
-				763B6BA46D944C21031E93E919265016 /* FabricInputPassword.swift */,
-				A2649279677DDA0A510A5AD8AEF06AE2 /* PasswordInputView.swift */,
-				FB3B87E9AAF14295013553F01F71CC66 /* PasswordInputViewController.swift */,
-				3A6A1C45FE5D6F555571E41CCA0136EE /* PasswordValidator.swift */,
-				784D606C4AA13AB199BBA21D945C89E2 /* RSACrypto.swift */,
-				01140FF8E96B2DF9394A57AA6FABF8CC /* RSAKeyManager.swift */,
-				B0B3F89DFFE0E0FBA02CF9A3AAA3A325 /* Pod */,
-				9BA9363175C6761135DD756CD2204816 /* Support Files */,
+				738D8533F091EB19430592B287B21E0D /* FBSnapshotTestCase.modulemap */,
+				AF3AAFDA99EE37BC05F4D944FB053A2C /* FBSnapshotTestCase-dummy.m */,
+				A5FA5B8F08E20E52A8B1B2DBF288F5A6 /* FBSnapshotTestCase-Info.plist */,
+				24C86C31601E844DB30A1F0A339C0E01 /* FBSnapshotTestCase-prefix.pch */,
+				2512B60B0DF863FA672D6FE05E0AC1E2 /* FBSnapshotTestCase-umbrella.h */,
+				1ECD3813A4B7E5CB6A80844B489FC3E7 /* FBSnapshotTestCase.debug.xcconfig */,
+				66822107FAB0AC7FEC4045FE6A98D3D7 /* FBSnapshotTestCase.release.xcconfig */,
 			);
-			name = FabricInputPassword;
-			path = ../..;
+			name = "Support Files";
+			path = "../Target Support Files/FBSnapshotTestCase";
+			sourceTree = "<group>";
+		};
+		550112B81E8ACC6B8C558C234485D985 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				88A5A243AF6E68CDB316B9EFDF8E195E /* FBSnapshotTestCase.h */,
+				6987D22860AA6377B63B35092FA41257 /* FBSnapshotTestCase.m */,
+				B86CB50890B584F862C90285B912F117 /* FBSnapshotTestCasePlatform.h */,
+				E583DD521EFC80DF06BF050AADA541BD /* FBSnapshotTestCasePlatform.m */,
+				1BB2839EC8ED0E9C180151BF80BE7BE8 /* FBSnapshotTestController.h */,
+				A4C3707C41A3DD026883C18F725328C8 /* FBSnapshotTestController.m */,
+				05DF1721FD938C8D7B6D7FA56C779B99 /* UIApplication+StrictKeyWindow.h */,
+				1CC59160EC009BEA083AF144FC2E98A4 /* UIApplication+StrictKeyWindow.m */,
+				63CB86FC2D7DB05A5DDFE17B0A82795F /* UIImage+Compare.h */,
+				873D447BB1A99C7D28F60D1D32F175E1 /* UIImage+Compare.m */,
+				A086FB30CB1EA0D22F1589A2EAE0162C /* UIImage+Diff.h */,
+				57F197B6007A42BB63AAEA77DB77FBE9 /* UIImage+Diff.m */,
+				9D39EFA7422078042A00B79D3766DCAF /* UIImage+Snapshot.h */,
+				A34F7C0103EF532CBE37FBC817DBFA27 /* UIImage+Snapshot.m */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		58E012C9AD81819D02BC8F01B0FBE260 /* Targets Support Files */ = {
@@ -223,6 +305,21 @@
 				77238C3682F8054137228721707700F9 /* Pods-FabricInputPassword_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		5E080F90AB574EFD18FE309723B7A3A0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				483B4E10C2EBAFEDF7EA748CF98DD2DC /* FabricInputPassword.modulemap */,
+				8D78A784E0DA4EB22251991CDD5C262C /* FabricInputPassword-dummy.m */,
+				E690C009D119172AA43F5ADE96CD36CA /* FabricInputPassword-Info.plist */,
+				6A8A7BA118FD9C8A8B90CAF2D432F2C0 /* FabricInputPassword-prefix.pch */,
+				C1590A05E295FDCE19A2DAF12632DEE0 /* FabricInputPassword-umbrella.h */,
+				0BD73BE4C2BF2D90891691936C99A3C8 /* FabricInputPassword.debug.xcconfig */,
+				09893BEBA28965B0C01A7593F78E0305 /* FabricInputPassword.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/FabricInputPassword";
 			sourceTree = "<group>";
 		};
 		61E113E005A4DD8ADC22085067EC5FA3 /* Pods-FabricInputPassword_Example */ = {
@@ -242,6 +339,44 @@
 			path = "Target Support Files/Pods-FabricInputPassword_Example";
 			sourceTree = "<group>";
 		};
+		66596C7F75A5E8F274D113CEAB1EA1C8 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				F2450D721C77F95EC6B8DCE2B1904AD7 /* SwiftyRSA+ObjC.swift */,
+			);
+			name = ObjC;
+			sourceTree = "<group>";
+		};
+		667197FFE0638429DC15D64BB665C4A4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C2C65B28F930C62AAB410489D4615C23 /* Foundation.framework */,
+				E1FF6F24BEB78DEC400DF702E475C8B0 /* QuartzCore.framework */,
+				45B1B83340AC1475879944A2A78F100A /* Security.framework */,
+				E40A69856A9EF95EA7E1B646DE67EDBC /* UIKit.framework */,
+				73E2E2404DD4E96C82E13C0DCA1EA372 /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7288AC81B4932A532F8D2D90BC0FEBD5 /* FBSnapshotTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				550112B81E8ACC6B8C558C234485D985 /* Core */,
+				33AE0F0360F2660FDFDC9D09F9634941 /* Support Files */,
+				747FF550CCD743B9820204D0558B8933 /* SwiftSupport */,
+			);
+			path = FBSnapshotTestCase;
+			sourceTree = "<group>";
+		};
+		747FF550CCD743B9820204D0558B8933 /* SwiftSupport */ = {
+			isa = PBXGroup;
+			children = (
+				EACBBCC2A87D651D53F8E90BC3F104DC /* SwiftSupport.swift */,
+			);
+			name = SwiftSupport;
+			sourceTree = "<group>";
+		};
 		77238C3682F8054137228721707700F9 /* Pods-FabricInputPassword_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,118 +394,94 @@
 			path = "Target Support Files/Pods-FabricInputPassword_Tests";
 			sourceTree = "<group>";
 		};
-		89736692DF329F0B9BF3EFFCEA69EA54 /* iOS */ = {
+		78E11E4A9D05BA3DF7FE436AFA8EDD0F /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				692D29656528FA94A71ECFB8FEB6DC0B /* Foundation.framework */,
-				5E6B5E773973965C73BC40D4388B4C07 /* QuartzCore.framework */,
-				4138A0A13FF7F7B73435E87E54C56C18 /* UIKit.framework */,
-				26BC96F34E43FA0A3AE93B3C2C4595E5 /* XCTest.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		906402ECC4C6C5EB58DD365FD2C64E92 /* SwiftSupport */ = {
-			isa = PBXGroup;
-			children = (
-				3F0D66CF296ABBC57EC4D0452397E235 /* SwiftSupport.swift */,
-			);
-			name = SwiftSupport;
-			sourceTree = "<group>";
-		};
-		9BA9363175C6761135DD756CD2204816 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3EFC15CB163FD760A630053D2983A6A3 /* FabricInputPassword.modulemap */,
-				E46B4E908C85C1ABECF265AF518ED1B7 /* FabricInputPassword-dummy.m */,
-				0C69BEFA650FED2AC76E54F59C6B2100 /* FabricInputPassword-Info.plist */,
-				4675D15D4FE1EEFAD171C74CF77B17DA /* FabricInputPassword-prefix.pch */,
-				E3A7FE698A99F0BAA5833F9EDC06086A /* FabricInputPassword-umbrella.h */,
-				E775DA450C4DDC335CF09CC4AEA89D04 /* FabricInputPassword.debug.xcconfig */,
-				44968E8B0B7F8533964E69C1E01F0440 /* FabricInputPassword.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/FabricInputPassword";
-			sourceTree = "<group>";
-		};
-		B0B3F89DFFE0E0FBA02CF9A3AAA3A325 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				E2287DA8517636F9EF39169487A0ABB2 /* FabricInputPassword.podspec */,
-				67FEB4CE589CCF257434F2F18E5382C1 /* LICENSE */,
-				4BD39E23C547322D946AED2B7A796940 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		B69B2ECE2D2C9A3924A9231138CE0BBC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				CBFF6C5FD9C3A84274A9314D3E940B6E /* FBSnapshotTestCase.modulemap */,
-				1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */,
-				B7103CA00AED20722C5B69CA5B4F6938 /* FBSnapshotTestCase-Info.plist */,
-				D08CEBB9BDD9EF7A662ECFC0305C169E /* FBSnapshotTestCase-prefix.pch */,
-				8E5923010B02074CAA9AAF6EA02D66AA /* FBSnapshotTestCase-umbrella.h */,
-				9468E867498BBAF36F9AFFE4845F8B09 /* FBSnapshotTestCase.debug.xcconfig */,
-				4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FBSnapshotTestCase";
-			sourceTree = "<group>";
-		};
-		BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				89736692DF329F0B9BF3EFFCEA69EA54 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BD2D60DE56CBB8C87BA07E0C1CCD0592 /* FBSnapshotTestCase */ = {
-			isa = PBXGroup;
-			children = (
-				4BA2479549DD918290454B1CDCD0B92B /* Core */,
-				B69B2ECE2D2C9A3924A9231138CE0BBC /* Support Files */,
-				906402ECC4C6C5EB58DD365FD2C64E92 /* SwiftSupport */,
-			);
-			path = FBSnapshotTestCase;
-			sourceTree = "<group>";
-		};
-		BDAC2AC9C94AB1AFA5A3751449AD6055 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				52DA87BE234CB324136090697CE66FCB /* FabricInputPassword */,
+				BBA731A4261023A97A9747DBC1EB8390 /* FabricInputPassword */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		C3D9888650904A4551DA19AAC36458C5 /* Products */ = {
+		812D41B3EBC9C64C5EE10CA777023753 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7918BD1E9502FFBBEDFCD20192B5FBD0 /* SwiftyRSA.modulemap */,
+				3B2A9E7DF02F3CC5B474EE61A2C5035F /* SwiftyRSA-dummy.m */,
+				97C070CB9EA1825AEE631B04FC63FE9E /* SwiftyRSA-Info.plist */,
+				A8349B20FDD73B8DB19E210472CDCBCE /* SwiftyRSA-prefix.pch */,
+				1DAF3334961E431716F0E687C6E18E45 /* SwiftyRSA-umbrella.h */,
+				EBBC34A90E7CEEC4636DD98ED9CD0323 /* SwiftyRSA.debug.xcconfig */,
+				533B1A23CF88CEBE3CA1A4938F5E23C7 /* SwiftyRSA.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftyRSA";
+			sourceTree = "<group>";
+		};
+		9935AABDB55AB226354951BEAC52F40E /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				893F754849DED9BC740F04B3A22F6D78 /* FabricInputPassword.framework */,
 				5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase.framework */,
 				F1877AEE60F6D4CDE573138CD0A8B715 /* Pods_FabricInputPassword_Example.framework */,
 				9FDE372DBB811FC6279983891566F787 /* Pods_FabricInputPassword_Tests.framework */,
+				0DA4828908E30CE4A29CB9AD3A405635 /* SwiftyRSA.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A9C18DE38108D4B7265373A2C6F5FB30 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				DB7910CB801FA0FBA6F6B3154AF87DFF /* FabricInputPassword.podspec */,
+				9086E0666B8CB342482C307896370929 /* LICENSE */,
+				97DC94C469810BD1DBEB2AF692261F00 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		B94D7768568A9992200DB461E8CF687F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				667197FFE0638429DC15D64BB665C4A4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBA731A4261023A97A9747DBC1EB8390 /* FabricInputPassword */ = {
+			isa = PBXGroup;
+			children = (
+				1DC0897D0750FE5CE9EBDE1CD2557637 /* FabricInputPassword.swift */,
+				CE906EADF221168AF03B11386A2158BB /* FabricNavigationController.swift */,
+				155A764FFB0399F435B00F0E09A57558 /* PasswordInputView.swift */,
+				66FD38E86F1A68A18F37C4428EDCB896 /* PasswordInputViewController.swift */,
+				AF2BF762822595976AECD68CC5F29C05 /* PasswordValidator.swift */,
+				2701CFB8505F2C2399B4F7573BE3C9B9 /* RSACrypto.swift */,
+				8E5B376E4BA0845622B5157012E0B6FD /* RSAKeyManager.swift */,
+				8DCA9EC47B0C15A868DF7F0F8F116D97 /* SecurityKeyboardView.swift */,
+				A9C18DE38108D4B7265373A2C6F5FB30 /* Pod */,
+				5E080F90AB574EFD18FE309723B7A3A0 /* Support Files */,
+			);
+			name = FabricInputPassword;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				BDAC2AC9C94AB1AFA5A3751449AD6055 /* Development Pods */,
-				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
-				E81A37DBDE41E671312C56736544E2FA /* Pods */,
-				C3D9888650904A4551DA19AAC36458C5 /* Products */,
+				78E11E4A9D05BA3DF7FE436AFA8EDD0F /* Development Pods */,
+				B94D7768568A9992200DB461E8CF687F /* Frameworks */,
+				DF16A944BEF1EC8A3116D1F59EA3FBCA /* Pods */,
+				9935AABDB55AB226354951BEAC52F40E /* Products */,
 				58E012C9AD81819D02BC8F01B0FBE260 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		E81A37DBDE41E671312C56736544E2FA /* Pods */ = {
+		DF16A944BEF1EC8A3116D1F59EA3FBCA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BD2D60DE56CBB8C87BA07E0C1CCD0592 /* FBSnapshotTestCase */,
+				7288AC81B4932A532F8D2D90BC0FEBD5 /* FBSnapshotTestCase */,
+				05BA0616EE2774822D7F41CF0EBE9B04 /* SwiftyRSA */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -383,6 +494,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2B127CFFF82A5FEB468B1FE30CAEDA6 /* Pods-FabricInputPassword_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4599CD5B964B7D3E69AC99B5DF8AEA52 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				367AFE43234D7260D89660902B227513 /* NSData+SHA.h in Headers */,
+				1B0B0143E80BFEC3A92DAE9E2BFFE2FA /* SwiftyRSA.h in Headers */,
+				6FC18DB612A694665870035E0A33C2FD /* SwiftyRSA-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,19 +522,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AEA3B70E3564FD4999CDA049E739280A /* Headers */ = {
+		9815E73FFFD90E1AABC8A1C56C75789E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCB4ADD5DC58A7B3F7CFB8A63DF94DB5 /* FabricInputPassword-umbrella.h in Headers */,
+				F42A10708C34C0F19D5476CD1F188AE7 /* Pods-FabricInputPassword_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC921F0B4D28D34C479C8EAF4622D326 /* Headers */ = {
+		A6B3FEBA4A815AA879019D4E4C5DA22D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44FBB5BEA4B1365B83D65468462E257E /* Pods-FabricInputPassword_Example-umbrella.h in Headers */,
+				30BEA1027C41AC14128FA4DFE009FAFC /* FabricInputPassword-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,17 +543,18 @@
 /* Begin PBXNativeTarget section */
 		018A75462939F6F8919E9EC6C1133AAC /* Pods-FabricInputPassword_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5AC0AE85A1E19D43D1726D266943C1F7 /* Build configuration list for PBXNativeTarget "Pods-FabricInputPassword_Example" */;
+			buildConfigurationList = 6C4435C9267EE04330DB42C8D7629D56 /* Build configuration list for PBXNativeTarget "Pods-FabricInputPassword_Example" */;
 			buildPhases = (
-				FC921F0B4D28D34C479C8EAF4622D326 /* Headers */,
-				F64CD91726370291571901BA16DAAC79 /* Sources */,
-				CB9AED22997A9FD32DB7BE430CAE5DC7 /* Frameworks */,
-				C8F94C45F18AE06E5C8479A0125F3878 /* Resources */,
+				9815E73FFFD90E1AABC8A1C56C75789E /* Headers */,
+				075D1E6B21E48B003B8CC46508C2C98E /* Sources */,
+				EB3B29352E406455E4675149CC7E8C14 /* Frameworks */,
+				F839EEE6A93855B985D2EEC8D23E2480 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D64B467A211D57EA87BA34667F47EDB7 /* PBXTargetDependency */,
+				EBA241A621623E5DD0B31B71AAC9D10F /* PBXTargetDependency */,
+				54E05B6E150FAFD928AC1064599E7DC6 /* PBXTargetDependency */,
 			);
 			name = "Pods-FabricInputPassword_Example";
 			productName = Pods_FabricInputPassword_Example;
@@ -441,12 +563,12 @@
 		};
 		1E2EDE5952DE95E8D6814D61633A5147 /* FabricInputPassword */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6B4F9A6D0C6A2112032BD3BAF5B3EA38 /* Build configuration list for PBXNativeTarget "FabricInputPassword" */;
+			buildConfigurationList = 751DEFA606E5F8F102D82A9707A2333E /* Build configuration list for PBXNativeTarget "FabricInputPassword" */;
 			buildPhases = (
-				AEA3B70E3564FD4999CDA049E739280A /* Headers */,
-				5B6BBCFAF4CB5831971793218537D0E7 /* Sources */,
-				BD51CEDD6CD718B971DF9745C548E074 /* Frameworks */,
-				772562A73E6D19F8BE037F5CF9794450 /* Resources */,
+				A6B3FEBA4A815AA879019D4E4C5DA22D /* Headers */,
+				E5CF1DC3FC68D7704C9A090822DC4F81 /* Sources */,
+				A03AF7EB26DCBD9B36944553327B7F15 /* Frameworks */,
+				728450036F5547D9EC55F1020E7142DF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -469,12 +591,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				FB9E78B16CA24FA30E28355384F97BE3 /* PBXTargetDependency */,
-				12C5C39B0144169076A4FF93B0A8B14A /* PBXTargetDependency */,
+				1B89DDE78AF6EEEB36D880EFE15CD0A5 /* PBXTargetDependency */,
+				E9F2AEDE5AFE1CFC4C08D490C8B7598A /* PBXTargetDependency */,
 			);
 			name = "Pods-FabricInputPassword_Tests";
 			productName = Pods_FabricInputPassword_Tests;
 			productReference = 9FDE372DBB811FC6279983891566F787 /* Pods_FabricInputPassword_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		92A1C13902E7ACDA3ABB5BA1FEACC86C /* SwiftyRSA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4A3AA1CA5582D0C1AF377E9D9B31D9E /* Build configuration list for PBXNativeTarget "SwiftyRSA" */;
+			buildPhases = (
+				4599CD5B964B7D3E69AC99B5DF8AEA52 /* Headers */,
+				F73A7B92561C8716EEA807334CA68E56 /* Sources */,
+				89710D81E204EBB12A8334A22F41044D /* Frameworks */,
+				4F0BC9305143F5DD33A69A8C24587CFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyRSA;
+			productName = SwiftyRSA;
+			productReference = 0DA4828908E30CE4A29CB9AD3A405635 /* SwiftyRSA.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */ = {
@@ -513,7 +653,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = C3D9888650904A4551DA19AAC36458C5 /* Products */;
+			productRefGroup = 9935AABDB55AB226354951BEAC52F40E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -521,6 +661,7 @@
 				98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */,
 				018A75462939F6F8919E9EC6C1133AAC /* Pods-FabricInputPassword_Example */,
 				3FA27BED31140238986B5B6F247A49A7 /* Pods-FabricInputPassword_Tests */,
+				92A1C13902E7ACDA3ABB5BA1FEACC86C /* SwiftyRSA */,
 			);
 		};
 /* End PBXProject section */
@@ -533,14 +674,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		772562A73E6D19F8BE037F5CF9794450 /* Resources */ = {
+		4F0BC9305143F5DD33A69A8C24587CFB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8F94C45F18AE06E5C8479A0125F3878 /* Resources */ = {
+		728450036F5547D9EC55F1020E7142DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -554,21 +695,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F839EEE6A93855B985D2EEC8D23E2480 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5B6BBCFAF4CB5831971793218537D0E7 /* Sources */ = {
+		075D1E6B21E48B003B8CC46508C2C98E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				371851554665F9D2084776C75B8FAB8F /* SecurityKeyboardView.swift in Sources */,
-				293A1D75533D730C4F78D16E8B4A0500 /* FabricInputPassword.swift in Sources */,
-				1E7350E8555009AF09D21562FC67B60A /* FabricInputPassword-dummy.m in Sources */,
-				BFF2F5B17F34F962FFB7299782967345 /* PasswordInputView.swift in Sources */,
-				5FFDEBA025674FE6C67184DB760D3E6C /* PasswordInputViewController.swift in Sources */,
-				E12CED2725FEB94F24242463A19B753F /* PasswordValidator.swift in Sources */,
-				9454CB6E40E680A6028628AD5C5BF8C6 /* RSACrypto.swift in Sources */,
-				0071BAAB6CF62603EEE51C989C127BC4 /* RSAKeyManager.swift in Sources */,
+				2C48DFABADF6992E6B78A9B70DBDFF1C /* Pods-FabricInputPassword_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,34 +737,69 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F64CD91726370291571901BA16DAAC79 /* Sources */ = {
+		E5CF1DC3FC68D7704C9A090822DC4F81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE14887806D19461FA6E2FF263107D1 /* Pods-FabricInputPassword_Example-dummy.m in Sources */,
+				3EEF784D625AC8E3DE49D455DC63A52F /* FabricInputPassword.swift in Sources */,
+				39DC3A8465AC9412020986F79582D2B4 /* FabricInputPassword-dummy.m in Sources */,
+				C384A96B816E05EF6A70FB751BEF4351 /* FabricNavigationController.swift in Sources */,
+				4B6865A97A9C390EE1CF6CB13003899D /* PasswordInputView.swift in Sources */,
+				9935FDCD8193660746C5B55F9B328FE6 /* PasswordInputViewController.swift in Sources */,
+				1A15585A37ED5C4CB4C1D3438EFA9CEE /* PasswordValidator.swift in Sources */,
+				9EFE01692D6DF9FAD756AF76D4298E42 /* RSACrypto.swift in Sources */,
+				45FA43CA8374D37EFBE703D9CB054573 /* RSAKeyManager.swift in Sources */,
+				F4BCD5E8CDF9B1C4EF3629C142A5160F /* SecurityKeyboardView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F73A7B92561C8716EEA807334CA68E56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				976A8B94538E88B0EF6275A6F7D21BF8 /* Asn1Parser.swift in Sources */,
+				61F1373EAE61C90D532E01D02D3158A5 /* ClearMessage.swift in Sources */,
+				74F9C91538D58DBE4661294933D97860 /* EncryptedMessage.swift in Sources */,
+				B222FABCCC683456523BFA1E33A4E618 /* Key.swift in Sources */,
+				02F50E6E54E9E37868D2788A830675BC /* Message.swift in Sources */,
+				95290CFAC182811AF3B7D105DA0D0047 /* NSData+SHA.m in Sources */,
+				8C3FF83147AAF2C4A3F87512FBDD4CC3 /* PrivateKey.swift in Sources */,
+				8CD16F087F46BE8E175B199BA55D6BC2 /* PublicKey.swift in Sources */,
+				A1D6973EECCBB1F770F2010E529C1EC2 /* Signature.swift in Sources */,
+				AE3D1AC12B5937F37B8F5A7B29588579 /* SwiftyRSA.swift in Sources */,
+				03BC0BB9914E02F08A62576F8B4F9ECC /* SwiftyRSA+ObjC.swift in Sources */,
+				CECD8BC3AE146D4F8DF432FC8A775C03 /* SwiftyRSA-dummy.m in Sources */,
+				7A319A01CA649C592A1012F6F107F163 /* SwiftyRSAError.swift in Sources */,
+				3E44A33379B0E13E26BE123C3BD0581F /* X509Certificate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		12C5C39B0144169076A4FF93B0A8B14A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-FabricInputPassword_Example";
-			target = 018A75462939F6F8919E9EC6C1133AAC /* Pods-FabricInputPassword_Example */;
-			targetProxy = 4C4EC922A6A5B47406B4BB415BDE5ADD /* PBXContainerItemProxy */;
-		};
-		D64B467A211D57EA87BA34667F47EDB7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FabricInputPassword;
-			target = 1E2EDE5952DE95E8D6814D61633A5147 /* FabricInputPassword */;
-			targetProxy = BB4AF3BD31664D6F3317A1569411A7DD /* PBXContainerItemProxy */;
-		};
-		FB9E78B16CA24FA30E28355384F97BE3 /* PBXTargetDependency */ = {
+		1B89DDE78AF6EEEB36D880EFE15CD0A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBSnapshotTestCase;
 			target = 98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */;
-			targetProxy = FDF596ACA4C2A2A30BBFC32F5EB03583 /* PBXContainerItemProxy */;
+			targetProxy = 7186630156CA9CB854E6D85AAF1020E7 /* PBXContainerItemProxy */;
+		};
+		54E05B6E150FAFD928AC1064599E7DC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyRSA;
+			target = 92A1C13902E7ACDA3ABB5BA1FEACC86C /* SwiftyRSA */;
+			targetProxy = 17BCBA6AAE1D89E0A90B4FFE7DE8C667 /* PBXContainerItemProxy */;
+		};
+		E9F2AEDE5AFE1CFC4C08D490C8B7598A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-FabricInputPassword_Example";
+			target = 018A75462939F6F8919E9EC6C1133AAC /* Pods-FabricInputPassword_Example */;
+			targetProxy = C6A0435D3BFF37117798ED5F1E640074 /* PBXContainerItemProxy */;
+		};
+		EBA241A621623E5DD0B31B71AAC9D10F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FabricInputPassword;
+			target = 1E2EDE5952DE95E8D6814D61633A5147 /* FabricInputPassword */;
+			targetProxy = 1C871732F4E48EC9227F7063212781B6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -665,9 +841,9 @@
 			};
 			name = Release;
 		};
-		4A1B446B4FFEC4DA349F1E71133E4E68 /* Debug */ = {
+		2ADDE16F68581B4EF477BF86D834DC2A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA87305306F9124D37A4AD142FB0F315 /* Pods-FabricInputPassword_Example.debug.xcconfig */;
+			baseConfigurationReference = FBCE6A90C689448371D9ED4DF2172947 /* Pods-FabricInputPassword_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -696,16 +872,16 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		7DEB8DB63F11AFEBC6206F6940A9E68C /* Debug */ = {
+		359B5F34EE1C7408E510E3D0285D7314 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1E1DE3AE6BEC3D38BE84E68AA4ABC2C /* Pods-FabricInputPassword_Tests.debug.xcconfig */;
+			baseConfigurationReference = EBBC34A90E7CEEC4636DD98ED9CD0323 /* SwiftyRSA.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -718,28 +894,33 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-FabricInputPassword_Tests/Pods-FabricInputPassword_Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyRSA/SwiftyRSA-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SwiftyRSA/SwiftyRSA-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-FabricInputPassword_Tests/Pods-FabricInputPassword_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/SwiftyRSA/SwiftyRSA.modulemap";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl,-weak-lswiftCoreGraphics",
+				);
+				PRODUCT_MODULE_NAME = SwiftyRSA;
+				PRODUCT_NAME = SwiftyRSA;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		8CBCD4D2A4F840D90DDCA462CD241A38 /* Debug */ = {
+		7B1C172B50C57EED05135E966476957B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E775DA450C4DDC335CF09CC4AEA89D04 /* FabricInputPassword.debug.xcconfig */;
+			baseConfigurationReference = 09893BEBA28965B0C01A7593F78E0305 /* FabricInputPassword.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -771,6 +952,43 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7DEB8DB63F11AFEBC6206F6940A9E68C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1E1DE3AE6BEC3D38BE84E68AA4ABC2C /* Pods-FabricInputPassword_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-FabricInputPassword_Tests/Pods-FabricInputPassword_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-FabricInputPassword_Tests/Pods-FabricInputPassword_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -906,7 +1124,7 @@
 		};
 		ACC5A6998DF07236CFD3809829EDD45B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9468E867498BBAF36F9AFFE4845F8B09 /* FBSnapshotTestCase.debug.xcconfig */;
+			baseConfigurationReference = 1ECD3813A4B7E5CB6A80844B489FC3E7 /* FBSnapshotTestCase.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -943,46 +1161,9 @@
 			};
 			name = Debug;
 		};
-		B28426452E7D5A7AE747DCDB491A666A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBCE6A90C689448371D9ED4DF2172947 /* Pods-FabricInputPassword_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Target Support Files/Pods-FabricInputPassword_Example/Pods-FabricInputPassword_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-FabricInputPassword_Example/Pods-FabricInputPassword_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		C5BDCA6C74F5A8BFBC996222B18A0D6E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */;
+			baseConfigurationReference = 66822107FAB0AC7FEC4045FE6A98D3D7 /* FBSnapshotTestCase.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1020,9 +1201,9 @@
 			};
 			name = Release;
 		};
-		E6DFE3CBB404CBAB8CA83A7B2C22E64C /* Release */ = {
+		D5337DE3FA6A67D0E0B0B01AC3639C36 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44968E8B0B7F8533964E69C1E01F0440 /* FabricInputPassword.release.xcconfig */;
+			baseConfigurationReference = 0BD73BE4C2BF2D90891691936C99A3C8 /* FabricInputPassword.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1055,11 +1236,87 @@
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D5EE034F646530A5BD24C9A32787D5B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 533B1A23CF88CEBE3CA1A4938F5E23C7 /* SwiftyRSA.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyRSA/SwiftyRSA-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SwiftyRSA/SwiftyRSA-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyRSA/SwiftyRSA.modulemap";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl,-weak-lswiftCoreGraphics",
+				);
+				PRODUCT_MODULE_NAME = SwiftyRSA;
+				PRODUCT_NAME = SwiftyRSA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		FD29334CE0F938C6E33FE489202DAEEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA87305306F9124D37A4AD142FB0F315 /* Pods-FabricInputPassword_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-FabricInputPassword_Example/Pods-FabricInputPassword_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-FabricInputPassword_Example/Pods-FabricInputPassword_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1091,20 +1348,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5AC0AE85A1E19D43D1726D266943C1F7 /* Build configuration list for PBXNativeTarget "Pods-FabricInputPassword_Example" */ = {
+		6C4435C9267EE04330DB42C8D7629D56 /* Build configuration list for PBXNativeTarget "Pods-FabricInputPassword_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4A1B446B4FFEC4DA349F1E71133E4E68 /* Debug */,
-				B28426452E7D5A7AE747DCDB491A666A /* Release */,
+				FD29334CE0F938C6E33FE489202DAEEB /* Debug */,
+				2ADDE16F68581B4EF477BF86D834DC2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6B4F9A6D0C6A2112032BD3BAF5B3EA38 /* Build configuration list for PBXNativeTarget "FabricInputPassword" */ = {
+		751DEFA606E5F8F102D82A9707A2333E /* Build configuration list for PBXNativeTarget "FabricInputPassword" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8CBCD4D2A4F840D90DDCA462CD241A38 /* Debug */,
-				E6DFE3CBB404CBAB8CA83A7B2C22E64C /* Release */,
+				D5337DE3FA6A67D0E0B0B01AC3639C36 /* Debug */,
+				7B1C172B50C57EED05135E966476957B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A4A3AA1CA5582D0C1AF377E9D9B31D9E /* Build configuration list for PBXNativeTarget "SwiftyRSA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				359B5F34EE1C7408E510E3D0285D7314 /* Debug */,
+				D5EE034F646530A5BD24C9A32787D5B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

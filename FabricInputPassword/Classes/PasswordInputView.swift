@@ -2,18 +2,18 @@ import UIKit
 
 /// 密码输入视图代理
 protocol PasswordInputViewDelegate: AnyObject {
-    func passwordInputView(_ view: PasswordInputView, didEnterPassword password: String)
+    func passwordInputView(_ view: PasswordInputView, didEnterPassword password: [Int])
     func passwordInputViewDidBeginEditing(_ view: PasswordInputView)
-    func passwordInputViewDidChange(_ view: PasswordInputView, password: String)
+    func passwordInputViewDidChange(_ view: PasswordInputView, password: [Int])
 }
 
-/// 密码输入视图（6个格子）
+/// 密码输入视图（6个格子）- 使用数字数组存储密码
 class PasswordInputView: UIView {
     
     // MARK: - 属性
     
     private let length: Int
-    internal var password: String = "" 
+    private var password: [Int] = []  // 使用数字数组而不是字符串
     private var digitViews: [UIView] = []
     private var cursorLayer: CALayer?
     private var cursorTimer: Timer?
@@ -36,6 +36,8 @@ class PasswordInputView: UIView {
     
     deinit {
         cursorTimer?.invalidate()
+        // 安全清理密码数据
+        secureClearPassword()
     }
     
     // MARK: - UI设置
@@ -162,12 +164,12 @@ class PasswordInputView: UIView {
         becomeFirstResponder()
     }
     
-    // MARK: - 密码操作
+    // MARK: - 密码操作（使用数字数组）
     
     func appendNumber(_ number: Int) {
         guard password.count < length else { return }
         
-        password.append(String(number))
+        password.append(number)
         updateDigitViews()
         updateCursorPosition()
         delegate?.passwordInputViewDidChange(self, password: password)
@@ -180,17 +182,36 @@ class PasswordInputView: UIView {
     func deleteLastNumber() {
         guard !password.isEmpty else { return }
         
-        password.removeLast()
+        // 安全删除最后一个数字
+        let lastIndex = password.count - 1
+        password[lastIndex] = 0  // 先清零
+        password.removeLast()    // 再移除
+        
         updateDigitViews()
         updateCursorPosition()
         delegate?.passwordInputViewDidChange(self, password: password)
     }
     
     func clearPassword() {
-        password = ""
+        secureClearPassword()
         updateDigitViews()
         updateCursorPosition()
         delegate?.passwordInputViewDidChange(self, password: password)
+    }
+    
+    /// 安全清理密码数据
+    private func secureClearPassword() {
+        // 先将所有元素清零
+        for i in 0..<password.count {
+            password[i] = 0
+        }
+        // 再清空数组
+        password.removeAll()
+    }
+    
+    /// 安全验证密码（避免在内存中创建字符串）
+    func validatePassword(validator: ([Int]) -> Bool) -> Bool {
+        return validator(password)
     }
     
     private func updateDigitViews() {
@@ -236,5 +257,19 @@ class PasswordInputView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         updateCursorPosition()
+    }
+    
+    // MARK: - 内存安全
+    
+    /// 重写 removeFromSuperview 以确保安全清理
+    override func removeFromSuperview() {
+        secureClearPassword()
+        super.removeFromSuperview()
+    }
+    
+    /// 安全复制密码（用于验证等场景）
+    func secureCopyPassword() -> [Int] {
+        // 返回副本而不是引用
+        return Array(password)
     }
 }
