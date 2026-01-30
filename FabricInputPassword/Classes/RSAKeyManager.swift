@@ -384,7 +384,8 @@ private extension Data {
     /// 检查是否包含指定的字节序列
     func contains(_ bytes: UInt8...) -> Bool {
         guard bytes.count > 0 else { return false }
-        
+        guard self.count > 0 else { return false }
+        guard self.count > bytes.count else { return false }
         for i in 0...(self.count - bytes.count) {
             var found = true
             for j in 0..<bytes.count {

@@ -1,9 +1,7 @@
 import UIKit
 
-/// 密码输入完成回调
-public typealias PasswordCompletionHandler = (String, Bool) -> Void
 /// 异步密码验证回调
-public typealias AsyncPasswordValidator = (String, @escaping (Bool) -> Void) -> Void
+public typealias AsyncPasswordValidator = (String, @escaping (Bool, String?) -> Void) -> Void
 /// 忘记密码点击回调
 public typealias ForgotPasswordHandler = () -> Void
 /// 关闭按钮点击回调
@@ -19,7 +17,6 @@ public class PasswordInputViewController: UIViewController {
     private let passwordLength: Int
     private let titleText: String?
     private let subtitleText: String?
-    private let completionHandler: PasswordCompletionHandler
     
     public var asyncValidator: AsyncPasswordValidator?
     public var forgotPasswordHandler: ForgotPasswordHandler?
@@ -28,7 +25,12 @@ public class PasswordInputViewController: UIViewController {
     
     private var passwordInputView: PasswordInputView!
     private var keyboardView: SecurityKeyboardView!
-    private var isVerifying = false
+    private var isVerifying = false {
+        didSet {
+            /// 验证过程中，静止操作键盘
+            keyboardView.isUserInteractionEnabled = !isVerifying
+        }
+    }
     
     // MARK: - 窗口显示相关属性
     private var customWindow: UIWindow?
@@ -171,12 +173,10 @@ public class PasswordInputViewController: UIViewController {
     ///   - completion: 完成回调，返回输入的密码和验证结果
     public init(passwordLength: Int = 6,
                 title: String? = "请输入密码",
-                subtitle: String? = nil,
-                completion: @escaping PasswordCompletionHandler) {
+                subtitle: String? = nil) {
         self.passwordLength = passwordLength
         self.titleText = title
         self.subtitleText = subtitle
-        self.completionHandler = completion
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
@@ -440,19 +440,15 @@ public class PasswordInputViewController: UIViewController {
         
         if let asyncValidator = asyncValidator {
             // 使用异步验证器
-            asyncValidator(password) { [weak self] isValid in
+            asyncValidator(password) { [weak self] isValid, message in
                 DispatchQueue.main.async {
-                    self?.handleValidationResult(password: password, isValid: isValid)
+                    self?.handleValidationResult(isValid: isValid, message: message)
                 }
             }
-        }  else {
-            // 使用默认验证（同步）
-            let isValid = PasswordValidator.validate(password)
-            handleValidationResult(password: password, isValid: isValid)
-        }
+        } 
     }
     
-    private func handleValidationResult(password: String, isValid: Bool) {
+    private func handleValidationResult(isValid: Bool, message: String?) {
         isVerifying = false
         activityIndicator.stopAnimating()
         passwordInputView.isUserInteractionEnabled = true
@@ -460,12 +456,10 @@ public class PasswordInputViewController: UIViewController {
         
         if isValid {
             // 验证成功
-            completionHandler(password, true)
             hide()
         } else {
             // 验证失败
-            showError("密码错误，请重新输入")
-            completionHandler(password, false)
+            showError(message ?? "密码输入错误")
         }
     }
 }
