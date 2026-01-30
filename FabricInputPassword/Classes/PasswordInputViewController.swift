@@ -97,7 +97,7 @@ public class PasswordInputViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .red
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

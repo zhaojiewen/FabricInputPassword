@@ -35,12 +35,10 @@ public class FabricInputPassword: NSObject {
         ) else {
             return
         }
-        // 创建验证器
-        let validator = PaymentPasswordValidator(configuration: configuration)
         
         // 创建异步验证器闭包
-        let asyncValidator = validator.createAsyncValidator(success: success)
-        
+        let asyncValidator = PaymentPasswordValidator.createAsyncValidator(configuration, success: success)
+
         // 显示密码输入界面
         showPasswordInput(from: viewController,
                          forgotPasswordHandler: forgotPasswordHandler,
@@ -80,11 +78,9 @@ public class FabricInputPassword: NSObject {
             return
         }
         
-        // 创建验证器
-        let validator = PaymentPasswordValidator(configuration: configuration)
         
         // 创建异步验证器闭包
-        let asyncValidator = validator.createAsyncValidator(success: success)
+        let asyncValidator = PaymentPasswordValidator.createAsyncValidator(configuration, success: success)
 
         // 显示密码输入界面
         showInNewWindow(windowLevel: windowLevel,

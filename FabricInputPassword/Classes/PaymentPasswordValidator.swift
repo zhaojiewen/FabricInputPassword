@@ -116,7 +116,6 @@ public enum Environment: Int {
 /// 支付密码验证器
 public class PaymentPasswordValidator {
     
-        
     /// 配置
     public struct Configuration {
         public let environment: Environment
@@ -158,20 +157,12 @@ public class PaymentPasswordValidator {
         }
     }
     
-    private let configuration: Configuration
-    
-    /// 初始化验证器
-    /// - Parameter configuration: 验证器配置
-    public init(configuration: Configuration) {
-        self.configuration = configuration
-        LogManager.shared.business("交易信息: tranCode=\(configuration.tranCode), merId=\(configuration.merId), merOrderId=\(configuration.merOrderId), tranAmt=\(configuration.tranAmt)")
-    }
     
     /// 验证支付密码
     /// - Parameters:
     ///   - password: 支付密码
     ///   - completion: 完成回调，返回验证结果
-    public func validate(password: String, completion: @escaping PasswordValidatorComplete) {
+    public static func validate(_ configuration: Configuration, password: String, completion: @escaping PasswordValidatorComplete) {
                 
         // 创建业务参数
         let businessParams = BusinessParameters(
@@ -202,7 +193,7 @@ public class PaymentPasswordValidator {
                 switch result {
                 case .success(let response):
                     // 5. 验证响应
-                    self.validateResponse(response, completion: completion)
+                    validateResponse(configuration, response: response, completion: completion)
                     
                 case .failure(let error):
                     completion(nil, error.localizedDescription)
@@ -215,7 +206,7 @@ public class PaymentPasswordValidator {
     }
     
     /// 验证服务器响应
-    private func validateResponse(_ response: PaymentPasswordResponse, completion: @escaping PasswordValidatorComplete) {
+    private static func validateResponse(_ configuration: Configuration, response: PaymentPasswordResponse, completion: @escaping PasswordValidatorComplete) {
         // 检查resultCode
         guard response.resultCode == ResultCode.success else {
             completion(nil, response.resultMsg)
@@ -261,18 +252,14 @@ extension PaymentPasswordValidator {
     
     /// 创建异步验证器闭包
     /// - Returns: 符合AsyncPasswordValidator类型的闭包
-    public func createAsyncValidator(success: @escaping (String) -> Void) -> AsyncPasswordValidator {
-        return { [weak self] password, callback in
-            guard let self = self else {
-                callback(false, "页面已释放")
-                return
-            }
+    public static func createAsyncValidator(_ configuration: Configuration, success: @escaping (String) -> Void) -> AsyncPasswordValidator {
+        return { password, callback in
             
-            self.validate(password: password) { token, message in
+            validate(configuration, password: password) { token, message in
                 
                 /// 修改密码页面状态
                 callback(token != nil, message)
-                
+                LogManager.shared.info(message ?? "")
                 if let token = token {
                     
                     /// 只有成功才传Token

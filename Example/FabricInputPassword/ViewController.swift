@@ -166,9 +166,9 @@ class ViewController: UIViewController {
                     callback(isValid, nil)
                     
                     if isValid {
-                        self?.updateResultLabel("✅ 异步验证成功！", color: .systemGreen)
+                        self?.updateResultLabel("✅ 验证成功！", color: .systemGreen)
                     } else {
-                        self?.updateResultLabel("❌ 异步验证失败！", color: .systemRed)
+                        self?.updateResultLabel("❌ 验证失败！", color: .systemRed)
                     }
                 }
             }
@@ -189,9 +189,9 @@ class ViewController: UIViewController {
                                                     callback(isValid, nil)
 
                                                     if isValid {
-                                                        self?.updateResultLabel("✅ 异步验证成功！", color: .systemGreen)
+                                                        self?.updateResultLabel("✅ 验证成功！", color: .systemGreen)
                                                     } else {
-                                                        self?.updateResultLabel("❌ 异步验证失败！", color: .systemRed)
+                                                        self?.updateResultLabel("❌ 验证失败！", color: .systemRed)
                                                     }
                                                 }
                                             }
