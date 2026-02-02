@@ -6,8 +6,6 @@ public typealias AsyncPasswordValidator = (String, @escaping (Bool, String?) -> 
 public typealias ForgotPasswordHandler = () -> Void
 /// 关闭按钮点击回调
 public typealias CloseButtonHandler = () -> Void
-/// 背景点击回调
-public typealias BackgroundTapHandler = () -> Void
 
 /// 密码输入视图控制器
 public class PasswordInputViewController: UIViewController {
@@ -21,16 +19,10 @@ public class PasswordInputViewController: UIViewController {
     public var asyncValidator: AsyncPasswordValidator?
     public var forgotPasswordHandler: ForgotPasswordHandler?
     public var closeButtonHandler: CloseButtonHandler?
-    public var backgroundTapHandler: BackgroundTapHandler?
     
     private var passwordInputView: PasswordInputView!
     private var keyboardView: SecurityKeyboardView!
-    private var isVerifying = false {
-        didSet {
-            /// 验证过程中，静止操作键盘
-            keyboardView.isUserInteractionEnabled = !isVerifying
-        }
-    }
+    private var isVerifying = false
     
     // MARK: - 窗口显示相关属性
     private var customWindow: UIWindow?
@@ -48,6 +40,7 @@ public class PasswordInputViewController: UIViewController {
         return view
     }()
     
+    /// 防截屏/录屏
     private let securityView: UIView  = {
         let field = UITextField()
         field.isSecureTextEntry = true
@@ -116,6 +109,7 @@ public class PasswordInputViewController: UIViewController {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .medium)
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.backgroundColor = .black
         return indicator
     }()
     
@@ -289,7 +283,7 @@ public class PasswordInputViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            // 容器视图约束 - 宽度等于屏幕宽度，高度为屏幕高度的60%
+            // 容器视图约束 - 宽度等于屏幕宽度，高度为屏幕高度的70%
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

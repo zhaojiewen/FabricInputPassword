@@ -267,9 +267,4 @@ class PasswordInputView: UIView {
         super.removeFromSuperview()
     }
     
-    /// 安全复制密码（用于验证等场景）
-    func secureCopyPassword() -> [Int] {
-        // 返回副本而不是引用
-        return Array(password)
-    }
 }

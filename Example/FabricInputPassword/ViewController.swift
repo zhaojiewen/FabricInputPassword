@@ -8,7 +8,6 @@
 
 import UIKit
 import FabricInputPassword
-import SwiftyRSA
 
 class ViewController: UIViewController {
     
@@ -23,22 +22,10 @@ class ViewController: UIViewController {
         return label
     }()
     
- 
-    private let asyncButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("异步验证（密码：888888）", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        button.backgroundColor = .systemPurple
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
     
     private let windowButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("使用新Window验证（密码：888888）", for: .normal)
+        button.setTitle("验证（密码：888888）", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         button.backgroundColor = .systemPurple
         button.setTitleColor(.white, for: .normal)
@@ -104,7 +91,6 @@ class ViewController: UIViewController {
         view.addSubview(titleLabel)
         
         // 配置堆栈视图
-        stackView.addArrangedSubview(asyncButton)
         stackView.addArrangedSubview(windowButton)
         stackView.addArrangedSubview(devButton)
         view.addSubview(stackView)
@@ -122,7 +108,6 @@ class ViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             devButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            asyncButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             windowButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             resultLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 40),
             resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -135,7 +120,6 @@ class ViewController: UIViewController {
     private func setupActions() {
         devButton.addTarget(self, action: #selector(devButtonTapped), for: .touchUpInside)
 
-        asyncButton.addTarget(self, action: #selector(asyncButtonTapped), for: .touchUpInside)
         windowButton.addTarget(self, action: #selector(windowButtonTapped), for: .touchUpInside)
 
     }
@@ -148,33 +132,7 @@ class ViewController: UIViewController {
             // 此时密码已经验证成功，可以用token走后续支付流程
         }
     }
-    
-      
-    @objc private func asyncButtonTapped() {
-        updateResultLabel("正在显示验证密码输入框...")
         
-        FabricInputPassword.showPasswordInput(
-            from: self,
-            passwordLength: 6,
-            title: "验证密码",
-            subtitle: "请输入6位数字密码\n（测试密码：888888）",
-            asyncValidator: { [weak self] password, callback in
-                // 模拟网络请求延迟
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    // 模拟服务器验证
-                    let isValid = password == "888888"
-                    callback(isValid, nil)
-                    
-                    if isValid {
-                        self?.updateResultLabel("✅ 验证成功！", color: .systemGreen)
-                    } else {
-                        self?.updateResultLabel("❌ 验证失败！", color: .systemRed)
-                    }
-                }
-            }
-        )
-    }
-    
     
     @objc private func windowButtonTapped() {
         updateResultLabel("正在显示验证密码输入框...")

@@ -4,7 +4,6 @@ platform :ios, '13.0'
 
 target 'FabricInputPassword_Example' do
   pod 'FabricInputPassword', :path => '../'
-  pod 'SwiftyRSA'
   target 'FabricInputPassword_Tests' do
     inherit! :search_paths
 
