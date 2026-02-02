@@ -109,7 +109,6 @@ public class PasswordInputViewController: UIViewController {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .medium)
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.backgroundColor = .black
         return indicator
     }()
     
@@ -487,6 +486,7 @@ extension PasswordInputViewController: PasswordInputViewDelegate {
 // MARK: - SecurityKeyboardViewDelegate
 
 extension PasswordInputViewController: SecurityKeyboardViewDelegate {
+        
     func securityKeyboardView(_ view: SecurityKeyboardView, didTapNumber number: Int) {
         passwordInputView.appendNumber(number)
     }
@@ -498,6 +498,7 @@ extension PasswordInputViewController: SecurityKeyboardViewDelegate {
     func securityKeyboardViewDidTapClear(_ view: SecurityKeyboardView) {
         passwordInputView.clearPassword()
     }
+    
 }
 
 

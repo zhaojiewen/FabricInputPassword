@@ -178,11 +178,9 @@ public class PaymentPasswordValidator {
         do {
             // 1. 将业务参数转换为JSON字符串
             let jsonString = try businessParams.toJSONString()
-            LogManager.shared.business("业务参数JSON: \(jsonString)")
             
             // 2. 使用RSA加密JSON字符串
             let encryptedBase64 = try RSACrypto.smartEncrypt(jsonString, publicKey: configuration.publicKey)
-            LogManager.shared.crypto("RSA加密完成，Base64: \(encryptedBase64)")
             
             // 3. 准备请求参数
             let requestParameters = ["enc": encryptedBase64]
@@ -259,7 +257,6 @@ extension PaymentPasswordValidator {
                 
                 /// 修改密码页面状态
                 callback(token != nil, message)
-                LogManager.shared.info(message ?? "")
                 if let token = token {
                     
                     /// 只有成功才传Token

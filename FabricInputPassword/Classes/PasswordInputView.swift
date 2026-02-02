@@ -175,7 +175,11 @@ class PasswordInputView: UIView {
         delegate?.passwordInputViewDidChange(self, password: password)
         
         if password.count == length {
-            delegate?.passwordInputView(self, didEnterPassword: password)
+            let securityCopyPassword = Array(password)
+            /// 输入完成后立马清除
+            secureClearPassword()
+            
+            delegate?.passwordInputView(self, didEnterPassword: securityCopyPassword)
         }
     }
     

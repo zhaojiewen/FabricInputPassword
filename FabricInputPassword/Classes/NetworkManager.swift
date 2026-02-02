@@ -55,7 +55,6 @@ public class NetworkManager {
     
     private init() {
         session = URLSession(configuration: defaultConfiguration)
-        LogManager.shared.network("网络管理器初始化完成")
     }
     
     /// 发送POST请求
@@ -79,9 +78,6 @@ public class NetworkManager {
             }
         }
         
-        // 记录请求信息
-        LogManager.shared.network("发送POST请求到: \(url.absoluteString)")
-        LogManager.shared.network("请求头: \(request.allHTTPHeaderFields ?? [:])")
         
         // 编码参数为Form表单格式
         do {

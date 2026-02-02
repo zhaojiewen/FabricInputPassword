@@ -1,10 +1,17 @@
 import UIKit
+import Security
 
 /// 安全键盘代理
+
+@objc
 protocol SecurityKeyboardViewDelegate: AnyObject {
     func securityKeyboardView(_ view: SecurityKeyboardView, didTapNumber number: Int)
     func securityKeyboardViewDidTapDelete(_ view: SecurityKeyboardView)
     func securityKeyboardViewDidTapClear(_ view: SecurityKeyboardView)
+    
+    // 新增：RSA加密回调
+    @objc optional
+    func securityKeyboardView(_ view: SecurityKeyboardView, didTapEncryptedNumber encrypted: String)
 }
 
 /// 安全数字键盘 - 防监听、防记录
@@ -26,6 +33,10 @@ class SecurityKeyboardView: UIView {
     // 当前随机布局
     private var currentLayout: [String] = []
     
+    // RSA加密相关
+    private var rsaPublicKey: SecKey?
+    private var rsaConfiguration: RSACrypto.Configuration = .default
+    
     // MARK: - 安全特性
     
     /// 是否启用随机键盘布局
@@ -35,7 +46,13 @@ class SecurityKeyboardView: UIView {
     public var enableTouchObfuscation: Bool = true
     
     /// 是否启用点击后重新随机
-    public var enableReshuffleOnTap: Bool = false
+    public var enableReshuffleOnTap: Bool = true
+    
+    /// 是否启用RSA加密
+    public var enableRSAEncryption: Bool = false
+    
+    /// 是否启用加密后重新随机布局
+    public var enableReshuffleAfterEncryption: Bool = false
     
     // MARK: - 初始化
     
@@ -226,8 +243,8 @@ class SecurityKeyboardView: UIView {
         }
         
         // 最后一行布局：清除 + 最后一个数字 + 删除
-        if let clearButton = clearButton, 
-           let lastNumberButton = lastNumberButton,
+        if let clearButton = clearButton,
+            let lastNumberButton = lastNumberButton,
            let deleteButton = deleteButton {
             
             let lastRowButton = numberButtons[8] // 九宫格的最后一个按钮
@@ -268,18 +285,26 @@ class SecurityKeyboardView: UIView {
     // MARK: - 按钮动作
     
     @objc private func numberButtonTapped(_ sender: UIButton) {
-        // 添加随机延迟，防止通过时间分析攻击
-        if enableTouchObfuscation {
-            let randomDelay = Double.random(in: 0.01...0.05)
-            DispatchQueue.main.asyncAfter(deadline: .now() + randomDelay) {
-                self.delegate?.securityKeyboardView(self, didTapNumber: sender.tag)
-            }
+        // 获取真实值
+        let realValue = sender.tag
+        
+        // 如果启用了RSA加密，先加密再回调
+        if enableRSAEncryption, let publicKey = rsaPublicKey {
+            encryptAndSendNumber(realValue, with: publicKey)
         } else {
-            delegate?.securityKeyboardView(self, didTapNumber: sender.tag)
+            // 未启用加密，直接回调
+            sendNumberWithDelay(realValue)
         }
         
         // 每次点击后重新随机布局（可选）
         if enableRandomLayout && enableReshuffleOnTap {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.reshuffleLayout()
+            }
+        }
+        
+        // 加密后重新随机布局（可选）
+        if enableRSAEncryption && enableReshuffleAfterEncryption {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.reshuffleLayout()
             }
@@ -308,6 +333,61 @@ class SecurityKeyboardView: UIView {
         }
     }
     
+    // MARK: - RSA加密方法
+    
+    /// 启用RSA加密
+    /// - Parameters:
+    ///   - publicKey: 公钥
+    ///   - configuration: 配置（可选）
+    public func enableRSAEncryption(with publicKey: SecKey, configuration: RSACrypto.Configuration = .default) {
+        self.rsaPublicKey = publicKey
+        self.rsaConfiguration = configuration
+        self.enableRSAEncryption = true
+    }
+    
+    /// 加密并发送数字
+    private func encryptAndSendNumber(_ number: Int, with publicKey: SecKey) {
+        // 将数字转换为字符串
+        let numberString = "\(number)"
+        
+        do {
+            
+            // 使用RSACrypto进行加密
+            let encryptedStr = try RSACrypto.smartEncrypt(numberString, publicKey: publicKey, configuration: rsaConfiguration)
+            
+            // 添加随机延迟，防止通过时间分析攻击
+            if enableTouchObfuscation {
+                let randomDelay = Double.random(in: 0.01...0.05)
+                DispatchQueue.main.asyncAfter(deadline: .now() + randomDelay) {
+                    // 回调加密数据
+                    self.delegate?.securityKeyboardView?(self, didTapEncryptedNumber: encryptedStr)
+                }
+            } else {
+                // 回调加密数据
+                delegate?.securityKeyboardView?(self, didTapEncryptedNumber: encryptedStr)
+            }
+            
+        } catch {
+            print("RSA加密失败: \(error)")
+            // 加密失败时，发送原始数字
+            sendNumberWithDelay(number)
+        }
+    }
+    
+    /// 发送数字（带延迟）
+    private func sendNumberWithDelay(_ number: Int) {
+        // 添加随机延迟，防止通过时间分析攻击
+        if enableTouchObfuscation {
+            let randomDelay = Double.random(in: 0.01...0.05)
+            DispatchQueue.main.asyncAfter(deadline: .now() + randomDelay) {
+                self.delegate?.securityKeyboardView(self, didTapNumber: number)
+            }
+        } else {
+            delegate?.securityKeyboardView(self, didTapNumber: number)
+        }
+    }
+    
+    
     // MARK: - 公共方法
     
     /// 重新随机排列键盘布局
@@ -322,7 +402,9 @@ class SecurityKeyboardView: UIView {
     public func setSecurityFeatures(
         randomLayout: Bool? = nil,
         touchObfuscation: Bool? = nil,
-        reshuffleOnTap: Bool? = nil
+        reshuffleOnTap: Bool? = nil,
+        rsaEncryption: Bool? = nil,
+        reshuffleAfterEncryption: Bool? = nil
     ) {
         if let randomLayout = randomLayout {
             enableRandomLayout = randomLayout
@@ -332,6 +414,12 @@ class SecurityKeyboardView: UIView {
         }
         if let reshuffleOnTap = reshuffleOnTap {
             enableReshuffleOnTap = reshuffleOnTap
+        }
+        if let rsaEncryption = rsaEncryption {
+            enableRSAEncryption = rsaEncryption
+        }
+        if let reshuffleAfterEncryption = reshuffleAfterEncryption {
+            enableReshuffleAfterEncryption = reshuffleAfterEncryption
         }
         
         if randomLayout != nil {
