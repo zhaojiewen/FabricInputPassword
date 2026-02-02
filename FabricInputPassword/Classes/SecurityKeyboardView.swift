@@ -14,60 +14,33 @@ class SecurityKeyboardView: UIView {
     
     weak var delegate: SecurityKeyboardViewDelegate?
     
-    // 使用随机排列的键盘布局，防止固定模式被记录
-    private var currentLayout: [[String]] = []
+    // 数字集合
+    private let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
-    // 键盘布局池，每次显示时随机选择一种
-    private let layoutPool: [[[String]]] = [
-        // 标准布局
-        [
-            ["1", "2", "3"],
-            ["4", "5", "6"],
-            ["7", "8", "9"],
-            ["清除", "0", "删除"]
-        ],
-        // 随机布局1
-        [
-            ["7", "4", "1"],
-            ["8", "5", "2"],
-            ["9", "6", "3"],
-            ["清除", "0", "删除"]
-        ],
-        // 随机布局2
-        [
-            ["3", "6", "9"],
-            ["2", "5", "8"],
-            ["1", "4", "7"],
-            ["删除", "0", "清除"]
-        ],
-        // 随机布局3
-        [
-            ["8", "3", "6"],
-            ["1", "5", "9"],
-            ["4", "7", "2"],
-            ["清除", "删除", "0"]
-        ]
-    ]
+    // 按钮数组
+    private var numberButtons: [UIButton] = []
+    private var deleteButton: UIButton?
+    private var clearButton: UIButton?
+    private var lastNumberButton: UIButton?
     
-    private var buttons: [[UIButton]] = []
+    // 当前随机布局
+    private var currentLayout: [String] = []
     
     // MARK: - 安全特性
     
     /// 是否启用随机键盘布局
     public var enableRandomLayout: Bool = true
     
-    /// 是否启用防截图保护
-    public var enableScreenshotProtection: Bool = true
-    
     /// 是否启用触摸点混淆
     public var enableTouchObfuscation: Bool = true
     
+    /// 是否启用点击后重新随机
+    public var enableReshuffleOnTap: Bool = false
     
     // MARK: - 初始化
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSecurity()
         setupUI()
     }
     
@@ -75,46 +48,6 @@ class SecurityKeyboardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        // 清理时移除安全保护
-        removeScreenshotProtection()
-    }
-    
-    // MARK: - 安全设置
-    
-    private func setupSecurity() {
-        // 防止键盘被截图
-        if enableScreenshotProtection {
-            setupScreenshotProtection()
-        }
-    }
-    
-    private func setupScreenshotProtection() {
-        // 添加防截图层
-        let protectionView = ScreenshotProtectionView()
-        protectionView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(protectionView)
-        
-        NSLayoutConstraint.activate([
-            protectionView.topAnchor.constraint(equalTo: topAnchor),
-            protectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            protectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            protectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        
-        // 将保护层置于最上层
-        bringSubview(toFront: protectionView)
-    }
-    
-    private func removeScreenshotProtection() {
-        // 移除所有防截图视图
-        subviews.forEach { view in
-            if view is ScreenshotProtectionView {
-                view.removeFromSuperview()
-            }
-        }
-    }
-        
     override var canBecomeFirstResponder: Bool {
         false
     }
@@ -125,8 +58,8 @@ class SecurityKeyboardView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
         
-        // 选择键盘布局
-        selectRandomLayout()
+        // 生成随机布局
+        generateRandomLayout()
         
         // 创建按钮
         createButtons()
@@ -134,44 +67,64 @@ class SecurityKeyboardView: UIView {
         setupConstraints()
     }
     
-    private func selectRandomLayout() {
-        if enableRandomLayout && !layoutPool.isEmpty {
-            // 随机选择一个布局
-            let randomIndex = Int.random(in: 0..<layoutPool.count)
-            currentLayout = layoutPool[randomIndex]
+    private func generateRandomLayout() {
+        currentLayout.removeAll()
+        
+        if enableRandomLayout {
+            // 完全随机打乱数字顺序
+            currentLayout = numbers.shuffled()
         } else {
-            // 使用默认布局
-            currentLayout = layoutPool[0]
+            // 使用标准顺序
+            currentLayout = numbers
         }
     }
     
     private func createButtons() {
-        buttons.removeAll()
-        subviews.forEach { $0.removeFromSuperview() }
+        // 移除所有现有按钮
+        numberButtons.forEach { $0.removeFromSuperview() }
+        deleteButton?.removeFromSuperview()
+        clearButton?.removeFromSuperview()
+        lastNumberButton?.removeFromSuperview()
         
-        for rowTitles in currentLayout {
-            var rowButtons: [UIButton] = []
-            for title in rowTitles {
-                let button = createButton(with: title)
-                rowButtons.append(button)
-                addSubview(button)
-            }
-            buttons.append(rowButtons)
+        numberButtons.removeAll()
+        
+        // 创建前9个数字按钮（九宫格）
+        for i in 0..<9 {
+            let number = currentLayout[i]
+            let button = createNumberButton(with: number, index: i)
+            numberButtons.append(button)
+            addSubview(button)
+        }
+        
+        // 创建最后一个数字按钮（放在清除和删除中间）
+        let lastNumber = currentLayout[9]
+        lastNumberButton = createNumberButton(with: lastNumber, index: 9)
+        if let lastNumberButton = lastNumberButton {
+            addSubview(lastNumberButton)
+        }
+        
+        // 创建控制按钮
+        deleteButton = createControlButton(with: "删除", isDelete: true)
+        clearButton = createControlButton(with: "清除", isDelete: false)
+        
+        if let deleteButton = deleteButton {
+            addSubview(deleteButton)
+        }
+        
+        if let clearButton = clearButton {
+            addSubview(clearButton)
         }
     }
     
-    private func createButton(with title: String) -> UIButton {
+    private func createNumberButton(with number: String, index: Int) -> UIButton {
         let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
+        
+        // 设置标题
+        button.setTitle(number, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        button.setTitleColor(.black, for: .normal)
         
-        // 设置不同按钮的颜色
-        if title == "清除" || title == "删除" {
-            button.setTitleColor(.systemRed, for: .normal)
-        } else {
-            button.setTitleColor(.black, for: .normal)
-        }
-        
+        // 设置样式
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 1
@@ -180,18 +133,53 @@ class SecurityKeyboardView: UIView {
         button.layer.shadowOffset = CGSize(width: 0, height: 1)
         button.layer.shadowOpacity = 0.1
         button.layer.shadowRadius = 2
+        
+        // 存储真实值
+        if let value = Int(number) {
+            button.tag = value
+        }
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         
+        // 添加点击动作
+        button.addTarget(self, action: #selector(numberButtonTapped(_:)), for: .touchUpInside)
+        
+        // 添加触摸效果
+        button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        
+        return button
+    }
+    
+    private func createControlButton(with title: String, isDelete: Bool) -> UIButton {
+        let button = UIButton(type: .system)
+        
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        button.setTitleColor(.systemRed, for: .normal)
+        
+        // 设置样式
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1)
+        button.layer.shadowOpacity = 0.1
+        button.layer.shadowRadius = 2
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         // 添加点击动作
-        if let number = Int(title) {
-            button.tag = number
-            button.addTarget(self, action: #selector(numberButtonTapped(_:)), for: .touchUpInside)
-        } else if title == "删除" {
+        if isDelete {
             button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        } else if title == "清除" {
+        } else {
             button.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
         }
+        
+        // 添加触摸效果
+        button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         
         return button
     }
@@ -201,47 +189,81 @@ class SecurityKeyboardView: UIView {
         let buttonSpacing: CGFloat = 12
         let rowSpacing: CGFloat = 12
         
-        for (rowIndex, rowButtons) in buttons.enumerated() {
-            for (colIndex, button) in rowButtons.enumerated() {
-                NSLayoutConstraint.activate([
-                    button.heightAnchor.constraint(equalToConstant: buttonHeight),
-                ])
-                
-                // 第一行
-                if rowIndex == 0 {
-                    button.topAnchor.constraint(equalTo: topAnchor).isActive = true
-                } else {
-                    button.topAnchor.constraint(equalTo: buttons[rowIndex - 1][colIndex].bottomAnchor, constant: rowSpacing).isActive = true
-                }
-                
-                // 第一列
-                if colIndex == 0 {
-                    button.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-                } else {
-                    button.leadingAnchor.constraint(equalTo: rowButtons[colIndex - 1].trailingAnchor, constant: buttonSpacing).isActive = true
-                }
-                
-                // 最后一列
-                if colIndex == rowButtons.count - 1 {
-                    button.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-                }
-                
-                // 最后一行
-                if rowIndex == buttons.count - 1 {
-                    button.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-                }
-                
-                // 等宽
-                if colIndex > 0 {
-                    button.widthAnchor.constraint(equalTo: rowButtons[0].widthAnchor).isActive = true
-                }
+        // 前9个数字按钮布局 (3x3 九宫格)
+        for (index, button) in numberButtons.enumerated() {
+            let row = index / 3
+            let col = index % 3
+            
+            NSLayoutConstraint.activate([
+                button.heightAnchor.constraint(equalToConstant: buttonHeight),
+            ])
+            
+            // 第一行
+            if row == 0 {
+                button.topAnchor.constraint(equalTo: topAnchor).isActive = true
+            } else {
+                let previousRowButton = numberButtons[(row - 1) * 3 + col]
+                button.topAnchor.constraint(equalTo: previousRowButton.bottomAnchor, constant: rowSpacing).isActive = true
+            }
+            
+            // 第一列
+            if col == 0 {
+                button.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+            } else {
+                let previousButton = numberButtons[row * 3 + (col - 1)]
+                button.leadingAnchor.constraint(equalTo: previousButton.trailingAnchor, constant: buttonSpacing).isActive = true
+            }
+            
+            // 最后一列
+            if col == 2 {
+                button.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+            }
+            
+            // 等宽约束（所有按钮等宽）
+            if index > 0 {
+                button.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor).isActive = true
             }
         }
+        
+        // 最后一行布局：清除 + 最后一个数字 + 删除
+        if let clearButton = clearButton, 
+           let lastNumberButton = lastNumberButton,
+           let deleteButton = deleteButton {
+            
+            let lastRowButton = numberButtons[8] // 九宫格的最后一个按钮
+            
+            NSLayoutConstraint.activate([
+                // 高度约束
+                clearButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+                lastNumberButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+                deleteButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+                
+                // 宽度约束（等宽，与数字按钮相同）
+                clearButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor),
+                lastNumberButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor),
+                deleteButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor),
+                
+                // 顶部约束（在九宫格下方）
+                clearButton.topAnchor.constraint(equalTo: lastRowButton.bottomAnchor, constant: rowSpacing),
+                lastNumberButton.topAnchor.constraint(equalTo: lastRowButton.bottomAnchor, constant: rowSpacing),
+                deleteButton.topAnchor.constraint(equalTo: lastRowButton.bottomAnchor, constant: rowSpacing),
+                
+                // 底部约束
+                clearButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+                lastNumberButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+                deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+                
+                // 水平布局：清除 | 最后一个数字 | 删除
+                clearButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+                clearButton.trailingAnchor.constraint(equalTo: lastNumberButton.leadingAnchor, constant: -buttonSpacing),
+                
+                lastNumberButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+                
+                deleteButton.leadingAnchor.constraint(equalTo: lastNumberButton.trailingAnchor, constant: buttonSpacing),
+                deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            ])
+        }
     }
-    
-    // MARK: - 安全输入处理
-    
-
     
     // MARK: - 按钮动作
     
@@ -254,6 +276,13 @@ class SecurityKeyboardView: UIView {
             }
         } else {
             delegate?.securityKeyboardView(self, didTapNumber: sender.tag)
+        }
+        
+        // 每次点击后重新随机布局（可选）
+        if enableRandomLayout && enableReshuffleOnTap {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.reshuffleLayout()
+            }
         }
     }
     
@@ -283,81 +312,36 @@ class SecurityKeyboardView: UIView {
     
     /// 重新随机排列键盘布局
     public func reshuffleLayout() {
-        selectRandomLayout()
+        generateRandomLayout()
         createButtons()
         setupConstraints()
         layoutIfNeeded()
     }
     
-    
     /// 启用/禁用安全特性
     public func setSecurityFeatures(
         randomLayout: Bool? = nil,
-        screenshotProtection: Bool? = nil,
-        touchObfuscation: Bool? = nil
+        touchObfuscation: Bool? = nil,
+        reshuffleOnTap: Bool? = nil
     ) {
         if let randomLayout = randomLayout {
             enableRandomLayout = randomLayout
         }
-        if let screenshotProtection = screenshotProtection {
-            enableScreenshotProtection = screenshotProtection
-            if screenshotProtection {
-                setupScreenshotProtection()
-            } else {
-                removeScreenshotProtection()
-            }
-        }
         if let touchObfuscation = touchObfuscation {
             enableTouchObfuscation = touchObfuscation
         }
-    }
-}
-
-// MARK: - 防截图保护视图
-private class ScreenshotProtectionView: UIView {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupProtection()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupProtection()
-    }
-    
-    private func setupProtection() {
-        backgroundColor = .clear
-        isUserInteractionEnabled = false
+        if let reshuffleOnTap = reshuffleOnTap {
+            enableReshuffleOnTap = reshuffleOnTap
+        }
         
-        // 添加防截图效果
-        if #available(iOS 13.0, *) {
-            // 使用模糊效果
-            let blurEffect = UIBlurEffect(style: .regular)
-            let blurView = UIVisualEffectView(effect: blurEffect)
-            blurView.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(blurView)
-            
-            NSLayoutConstraint.activate([
-                blurView.topAnchor.constraint(equalTo: topAnchor),
-                blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                blurView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                blurView.bottomAnchor.constraint(equalTo: bottomAnchor)
-            ])
+        if randomLayout != nil {
+            reshuffleLayout()
         }
     }
     
-    // 防止被截图
-    override func draw(_ rect: CGRect) {
-        // 不绘制任何内容
+    /// 获取当前布局信息
+    public func getCurrentLayout() -> [String] {
+        return currentLayout
     }
     
-    // 防止内容被捕获
-    override var layer: CALayer {
-        let layer = super.layer
-        // 设置layer属性防止被截图
-        layer.compositingFilter = "screenBlendMode"
-        return layer
-    }
 }
-
