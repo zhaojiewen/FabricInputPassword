@@ -27,7 +27,6 @@ class SecurityKeyboardView: UIView {
     // 按钮数组
     private var numberButtons: [UIButton] = []
     private var deleteButton: UIButton?
-    private var clearButton: UIButton?
     private var lastNumberButton: UIButton?
     
     // 当前随机布局
@@ -73,7 +72,7 @@ class SecurityKeyboardView: UIView {
     
     private func setupUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .clear
+        backgroundColor = UIColor(red: 236 / 255.0, green: 237 / 255.0, blue: 239 / 255.0, alpha: 1)
         
         // 生成随机布局
         generateRandomLayout()
@@ -100,7 +99,6 @@ class SecurityKeyboardView: UIView {
         // 移除所有现有按钮
         numberButtons.forEach { $0.removeFromSuperview() }
         deleteButton?.removeFromSuperview()
-        clearButton?.removeFromSuperview()
         lastNumberButton?.removeFromSuperview()
         
         numberButtons.removeAll()
@@ -113,23 +111,18 @@ class SecurityKeyboardView: UIView {
             addSubview(button)
         }
         
-        // 创建最后一个数字按钮（放在清除和删除中间）
+        // 创建最后一个数字按钮（占用两格位置）
         let lastNumber = currentLayout[9]
         lastNumberButton = createNumberButton(with: lastNumber, index: 9)
         if let lastNumberButton = lastNumberButton {
             addSubview(lastNumberButton)
         }
         
-        // 创建控制按钮
-        deleteButton = createControlButton(with: "删除", isDelete: true)
-        clearButton = createControlButton(with: "清除", isDelete: false)
+        // 创建删除按钮
+        deleteButton = createDeleteButton()
         
         if let deleteButton = deleteButton {
             addSubview(deleteButton)
-        }
-        
-        if let clearButton = clearButton {
-            addSubview(clearButton)
         }
     }
     
@@ -138,18 +131,12 @@ class SecurityKeyboardView: UIView {
         
         // 设置标题
         button.setTitle(number, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Lydigital Number", size: 28)
+        button.setTitleColor(UIColor(red: 64 / 255.0, green: 66 / 255.0, blue: 70 / 255.0, alpha: 1), for: .normal)
         
         // 设置样式
         button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 1)
-        button.layer.shadowOpacity = 0.1
-        button.layer.shadowRadius = 2
+        button.layer.cornerRadius = 6
         
         // 存储真实值
         if let value = Int(number) {
@@ -168,31 +155,28 @@ class SecurityKeyboardView: UIView {
         return button
     }
     
-    private func createControlButton(with title: String, isDelete: Bool) -> UIButton {
+    private func createDeleteButton() -> UIButton {
         let button = UIButton(type: .system)
         
-        button.setTitle(title, for: .normal)
+        // 设置删除图标
+        if #available(iOS 13.0, *) {
+            let deleteImage = UIImage(systemName: "delete.left")
+            button.setImage(deleteImage, for: .normal)
+        } else {
+            button.setTitle("删除", for: .normal)
+        }
+        
+        button.tintColor = UIColor(red: 64 / 255.0, green: 66 / 255.0, blue: 70 / 255.0, alpha: 1)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        button.setTitleColor(.systemRed, for: .normal)
         
         // 设置样式
         button.backgroundColor = .white
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 1)
-        button.layer.shadowOpacity = 0.1
-        button.layer.shadowRadius = 2
+        button.layer.cornerRadius = 6
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
         // 添加点击动作
-        if isDelete {
-            button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        } else {
-            button.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
-        }
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         
         // 添加触摸效果
         button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
@@ -242,42 +226,36 @@ class SecurityKeyboardView: UIView {
             }
         }
         
-        // 最后一行布局：清除 + 最后一个数字 + 删除
-        if let clearButton = clearButton,
-            let lastNumberButton = lastNumberButton,
+        // 最后一行布局：最后一个数字（占用两格位置）+ 删除
+        if let lastNumberButton = lastNumberButton,
            let deleteButton = deleteButton {
             
             let lastRowButton = numberButtons[8] // 九宫格的最后一个按钮
             
             NSLayoutConstraint.activate([
                 // 高度约束
-                clearButton.heightAnchor.constraint(equalToConstant: buttonHeight),
                 lastNumberButton.heightAnchor.constraint(equalToConstant: buttonHeight),
                 deleteButton.heightAnchor.constraint(equalToConstant: buttonHeight),
                 
-                // 宽度约束（等宽，与数字按钮相同）
-                clearButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor),
-                lastNumberButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor),
+                // 宽度约束
+                // 最后一个数字按钮宽度 = 数字按钮宽度 * 2 + 间距
+                lastNumberButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor, multiplier: 2.0, constant: buttonSpacing),
                 deleteButton.widthAnchor.constraint(equalTo: numberButtons[0].widthAnchor),
                 
                 // 顶部约束（在九宫格下方）
-                clearButton.topAnchor.constraint(equalTo: lastRowButton.bottomAnchor, constant: rowSpacing),
                 lastNumberButton.topAnchor.constraint(equalTo: lastRowButton.bottomAnchor, constant: rowSpacing),
                 deleteButton.topAnchor.constraint(equalTo: lastRowButton.bottomAnchor, constant: rowSpacing),
                 
                 // 底部约束
-                clearButton.bottomAnchor.constraint(equalTo: bottomAnchor),
                 lastNumberButton.bottomAnchor.constraint(equalTo: bottomAnchor),
                 deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor),
                 
-                // 水平布局：清除 | 最后一个数字 | 删除
-                clearButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-                clearButton.trailingAnchor.constraint(equalTo: lastNumberButton.leadingAnchor, constant: -buttonSpacing),
-                
-                lastNumberButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-                
-                deleteButton.leadingAnchor.constraint(equalTo: lastNumberButton.trailingAnchor, constant: buttonSpacing),
+                // 水平布局：最后一个数字（左对齐）| 删除（右对齐）
+                lastNumberButton.leadingAnchor.constraint(equalTo: leadingAnchor),
                 deleteButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+                
+                // 删除按钮与最后一个数字按钮之间的间距
+                deleteButton.leadingAnchor.constraint(equalTo: lastNumberButton.trailingAnchor, constant: buttonSpacing),
             ])
         }
     }
