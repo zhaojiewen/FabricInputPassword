@@ -66,7 +66,7 @@ public class NetworkManager {
     public func post<T: Decodable>(url: URL,
                                    parameters: [String: Any],
                                    headers: [String: String]? = nil,
-                                   completion: @escaping (Result<T, NetworkError>) -> Void) {
+                                   completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionDataTask? {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -87,7 +87,7 @@ public class NetworkManager {
         } catch {
             LogManager.shared.error("请求参数编码失败: \(error.localizedDescription)")
             completion(.failure(.encodingError(error)))
-            return
+            return nil
         }
         
         // 发送请求
@@ -146,6 +146,8 @@ public class NetworkManager {
         }
         
         task.resume()
+        
+        return task
     }
     
     /// 编码Form表单数据

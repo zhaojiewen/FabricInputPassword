@@ -22,7 +22,7 @@ class SecurityKeyboardView: UIView {
     weak var delegate: SecurityKeyboardViewDelegate?
     
     // 数字集合
-    private let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    private let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     
     // 按钮数组
     private var numberButtons: [UIButton] = []
@@ -40,13 +40,13 @@ class SecurityKeyboardView: UIView {
     // MARK: - 安全特性
     
     /// 是否启用随机键盘布局
-    public var enableRandomLayout: Bool = true
+    public var enableRandomLayout: Bool = false
     
     /// 是否启用触摸点混淆
-    public var enableTouchObfuscation: Bool = true
+    public var enableTouchObfuscation: Bool = false
     
     /// 是否启用点击后重新随机
-    public var enableReshuffleOnTap: Bool = true
+    public var enableReshuffleOnTap: Bool = false
     
     /// 是否启用RSA加密
     public var enableRSAEncryption: Bool = false

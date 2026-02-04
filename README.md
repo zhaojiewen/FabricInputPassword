@@ -20,6 +20,21 @@ it, simply add the following line to your Podfile:
 pod 'FabricInputPassword'
 ```
 
+## 使用
+
+```
+        FabricInputPassword.verify(merId: "11000001234",
+                                   merSysId: "sys001",
+                                   merUserId: "user001",
+                                   merOrderId: "T2026012913141234",
+                                   tranAmt: "8.88") { token in
+            // 此时密码已经验证成功，可以用token走后续支付流程
+        }
+        
+```
+
+        
+
 ## Author
 
 haiqing.xu, haiqing.xu@ly.com

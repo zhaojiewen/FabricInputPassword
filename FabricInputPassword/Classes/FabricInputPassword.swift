@@ -16,6 +16,8 @@ public class FabricInputPassword: NSObject {
     ///   - forgotPasswordHandler: 忘记密码处理闭包， 需要跳转WebView
     ///   - success: 密码验证成功回调，返回Token
     @objc public static func verify(windowLevel: UIWindow.Level = UIWindowLevelStatusBar + 1,
+                                    title: String? = "请输入密码",
+                                    subtitle: String? = nil,
                                     environment: Environment = .release,
                                     merId: String,
                                     merSysId: String,
@@ -44,8 +46,10 @@ public class FabricInputPassword: NSObject {
 
         // 显示密码输入界面
         showInNewWindow(windowLevel: windowLevel,
-                       forgotPasswordHandler: forgotPasswordHandler,
-                       asyncValidator: asyncValidator)
+                        title: title,
+                        subtitle: subtitle,
+                        forgotPasswordHandler: forgotPasswordHandler,
+                        asyncValidator: asyncValidator)
     }
         
     /// 显示密码输入页面

@@ -1,7 +1,11 @@
 import UIKit
 
 /// 异步密码验证回调
-public typealias AsyncPasswordValidator = (String, @escaping (Bool, String?) -> Void) -> Void
+public typealias AsyncPasswordValidator = (String, @escaping (Bool, String?) -> Void) -> CancelPasswordValidator?
+
+/// 取消异步密码验证
+public typealias CancelPasswordValidator = () -> Void
+
 /// 忘记密码点击回调
 public typealias ForgotPasswordHandler = () -> Void
 /// 关闭按钮点击回调
@@ -17,6 +21,7 @@ public class PasswordInputViewController: UIViewController {
     private let subtitleText: String?
     
     public var asyncValidator: AsyncPasswordValidator?
+    private var cancelValidator: CancelPasswordValidator?
     public var forgotPasswordHandler: ForgotPasswordHandler?
     public var closeButtonHandler: CloseButtonHandler?
     
@@ -105,9 +110,20 @@ public class PasswordInputViewController: UIViewController {
         return button
     }()
     
+    private let loadingBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        view.layer.cornerRadius = 12
+        view.layer.masksToBounds = true
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .medium)
         indicator.hidesWhenStopped = true
+        indicator.color = .white
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -264,8 +280,9 @@ public class PasswordInputViewController: UIViewController {
         // 添加忘记密码按钮
         containerView.addSubview(forgotPasswordButton)
         
-        // 添加活动指示器
-        containerView.addSubview(activityIndicator)
+        // 添加加载背景视图和活动指示器
+        view.addSubview(loadingBackgroundView)
+        loadingBackgroundView.addSubview(activityIndicator)
         
         // 添加密码输入视图
         passwordInputView = PasswordInputView(length: passwordLength)
@@ -327,9 +344,15 @@ public class PasswordInputViewController: UIViewController {
             forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordInputView.trailingAnchor),
             forgotPasswordButton.topAnchor.constraint(equalTo: passwordInputView.bottomAnchor, constant: 12),
             
-            // 活动指示器约束 - 在密码输入视图旁边
-            activityIndicator.centerYAnchor.constraint(equalTo: passwordInputView.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: passwordInputView.centerXAnchor),
+            // 加载背景视图约束 - 居中在整个页面中
+            loadingBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingBackgroundView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingBackgroundView.widthAnchor.constraint(equalToConstant: 80),
+            loadingBackgroundView.heightAnchor.constraint(equalToConstant: 80),
+            
+            // 活动指示器约束 - 居中在背景视图中
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingBackgroundView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingBackgroundView.centerYAnchor),
 
             // 键盘约束 - 使用灵活的高度约束
             keyboardView.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 16),
@@ -349,6 +372,9 @@ public class PasswordInputViewController: UIViewController {
     // MARK: - 动作处理
     
     @objc private func closeButtonTapped() {
+        cancelValidator?()
+        cancelValidator = nil
+        
         if let closeHandler = closeButtonHandler {
             closeHandler()
         } else {
@@ -427,13 +453,14 @@ public class PasswordInputViewController: UIViewController {
         guard !isVerifying else { return }
         
         isVerifying = true
+        loadingBackgroundView.isHidden = false
         activityIndicator.startAnimating()
         passwordInputView.isUserInteractionEnabled = false
         keyboardView.isUserInteractionEnabled = false
         
         if let asyncValidator = asyncValidator {
             // 使用异步验证器
-            asyncValidator(password) { [weak self] isValid, message in
+            cancelValidator = asyncValidator(password) { [weak self] isValid, message in
                 DispatchQueue.main.async {
                     self?.handleValidationResult(isValid: isValid, message: message)
                 }
@@ -443,6 +470,7 @@ public class PasswordInputViewController: UIViewController {
     
     private func handleValidationResult(isValid: Bool, message: String?) {
         isVerifying = false
+        loadingBackgroundView.isHidden = true
         activityIndicator.stopAnimating()
         passwordInputView.isUserInteractionEnabled = true
         keyboardView.isUserInteractionEnabled = true

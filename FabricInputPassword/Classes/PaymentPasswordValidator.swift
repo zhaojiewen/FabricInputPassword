@@ -94,14 +94,17 @@ public enum Environment: Int {
     }
     
     var publicKey: SecKey? {
-        var publicKeyPEM = ""
-        
-        switch self {
-        case .release:
-            publicKeyPEM = ""
-        case .dev:
-            publicKeyPEM = ""
-        }
+        var publicKeyPEM = """
+            -----BEGIN PUBLIC KEY-----
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqosfpCRUGAybt6PLJ2aY
+            guU7x1WWlRcSyIGAM+EvlRru/31euQj98N6N1uG3Nt2sbcKM+ezC97q1j2zr+JRG
+            dpZHM+VkMYfGL1VYdOwLJlot41Jxzi9vnTygdKvE5dPDHdyN3oIP6L7ZVebVYZBC
+            7jYYGFlsXWQMAe7lvyA5GSF4jIfAep/K3H+DAdEEw7he2sd0WZjr1v6x2Ct47gtH
+            OF8d2wKBX3j9eVD0IvqZxW6PBrLKS+T7L2bvHBP59XuKQM4JJSpqLZ6k+XymenyC
+            +D6VqVEJiN1EnwWUagrxRzkV4b4joKyDDLZ8yKfKOURh2zAyIYHNtTf8c+UWk9kI
+            oQIDAQAB
+            -----END PUBLIC KEY-----
+            """        
         
         // 导入公钥
         return try? RSAKeyManager.importPublicKeyFromPEM(publicKeyPEM)
@@ -162,7 +165,7 @@ public class PaymentPasswordValidator {
     /// - Parameters:
     ///   - password: 支付密码
     ///   - completion: 完成回调，返回验证结果
-    public static func validate(_ configuration: Configuration, password: String, completion: @escaping PasswordValidatorComplete) {
+    public static func validate(_ configuration: Configuration, password: String, completion: @escaping PasswordValidatorComplete) -> CancelPasswordValidator? {
                 
         // 创建业务参数
         let businessParams = BusinessParameters(
@@ -186,8 +189,8 @@ public class PaymentPasswordValidator {
             let requestParameters = ["enc": encryptedBase64]
             
             // 4. 发送网络请求
-            NetworkManager.shared.post(url: configuration.apiURL,
-                                      parameters: requestParameters) { (result: Result<PaymentPasswordResponse, NetworkError>) in
+            let task = NetworkManager.shared.post(url: configuration.apiURL,
+                                                parameters: requestParameters) { (result: Result<PaymentPasswordResponse, NetworkError>) in
                 switch result {
                 case .success(let response):
                     // 5. 验证响应
@@ -198,8 +201,16 @@ public class PaymentPasswordValidator {
                 }
             }
             
+            return {
+                guard let task = task else { return }
+                guard task.state == .running || task.state == .suspended else { return }
+                task.cancel()
+            }
+            
         } catch {
             completion(nil, error.localizedDescription)
+            
+            return nil
         }
     }
     
@@ -253,7 +264,7 @@ extension PaymentPasswordValidator {
     public static func createAsyncValidator(_ configuration: Configuration, success: @escaping (String) -> Void) -> AsyncPasswordValidator {
         return { password, callback in
             
-            validate(configuration, password: password) { token, message in
+            return validate(configuration, password: password) { token, message in
                 
                 /// 修改密码页面状态
                 callback(token != nil, message)
