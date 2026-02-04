@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FabricInputPassword: 8cf3d738beb463e3ddf5fd5087dd88f6003a4fe4
+  FabricInputPassword: e8767689331cd7eb7fc844a36fed43787be9c415
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
 
 PODFILE CHECKSUM: 29776310204a6cdcde0eb5df4e10103cb24ed49e

@@ -7,7 +7,7 @@ public typealias AsyncPasswordValidator = (String, @escaping (Bool, String?) -> 
 public typealias CancelPasswordValidator = () -> Void
 
 /// 忘记密码点击回调
-public typealias ForgotPasswordHandler = () -> Void
+public typealias ForgotPasswordHandler = (String) -> Void
 /// 关闭按钮点击回调
 public typealias CloseButtonHandler = () -> Void
 
@@ -22,7 +22,7 @@ public class PasswordInputViewController: UIViewController {
     
     public var asyncValidator: AsyncPasswordValidator?
     private var cancelValidator: CancelPasswordValidator?
-    public var forgotPasswordHandler: ForgotPasswordHandler?
+    private var forgotPasswordHandler: ForgotPasswordHandler
     public var closeButtonHandler: CloseButtonHandler?
     
     private var passwordInputView: PasswordInputView!
@@ -61,9 +61,9 @@ public class PasswordInputViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -79,22 +79,19 @@ public class PasswordInputViewController: UIViewController {
     }()
     
     private let closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        if #available(iOS 13.0, *) {
-            button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        } else {
-            // Fallback on earlier versions
-        }
-        button.tintColor = .gray
+        let button = UIButton()
+        let image = FabricBundle.loadImage(named: "cancel")
+        button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let errorLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .red
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 11)
+        //rgba(249, 59, 59, 1)
+        label.textColor = UIColor(red: 249 / 255.0, green: 59 / 255.0, blue: 59 / 255.0, alpha: 1)
+        label.textAlignment = .left
         label.numberOfLines = 1
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -103,9 +100,10 @@ public class PasswordInputViewController: UIViewController {
     
     private let forgotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("忘记密码？", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitle("找回密码", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        /// rgba(2, 191, 81, 1)
+        button.setTitleColor(UIColor(red: 2 / 255.0, green: 191 / 255.0, blue: 81 / 255.0, alpha: 1), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -126,6 +124,14 @@ public class PasswordInputViewController: UIViewController {
         indicator.color = .white
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
+    }()
+    
+    // MARK: - 键盘背景容器
+    private let keyboardBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 236 / 255.0, green: 237 / 255.0, blue: 239 / 255.0, alpha: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     // MARK: - 窗口显示方法
@@ -181,11 +187,13 @@ public class PasswordInputViewController: UIViewController {
     ///   - subtitle: 副标题
     ///   - completion: 完成回调，返回输入的密码和验证结果
     public init(passwordLength: Int = 6,
-                title: String? = "请输入密码",
-                subtitle: String? = nil) {
+                title: String? = "请输入余额账户支付密码",
+                subtitle: String? = nil,
+                forgotPasswordHandler: @escaping ForgotPasswordHandler) {
         self.passwordLength = passwordLength
         self.titleText = title
         self.subtitleText = subtitle
+        self.forgotPasswordHandler = forgotPasswordHandler
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
@@ -274,7 +282,7 @@ public class PasswordInputViewController: UIViewController {
         // 添加关闭按钮
         containerView.addSubview(closeButton)
         
-        // 添加错误标签
+        // 添加错误标签（放在密码输入视图左下角）
         containerView.addSubview(errorLabel)
         
         // 添加忘记密码按钮
@@ -289,10 +297,15 @@ public class PasswordInputViewController: UIViewController {
         passwordInputView.delegate = self
         containerView.addSubview(passwordInputView)
         
-        // 添加安全键盘
+        // 添加键盘背景容器
+        containerView.addSubview(keyboardBackgroundView)
+        
+        // 添加安全键盘到背景容器中
         keyboardView = SecurityKeyboardView()
         keyboardView.delegate = self
-        containerView.addSubview(keyboardView)
+        // 移除键盘视图的背景色，因为现在由背景容器提供
+        keyboardView.backgroundColor = .clear
+        keyboardBackgroundView.addSubview(keyboardView)
         
         setupConstraints()
     }
@@ -303,46 +316,45 @@ public class PasswordInputViewController: UIViewController {
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
             
-            // 关闭按钮约束
-            closeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            closeButton.widthAnchor.constraint(equalToConstant: 24),
-            closeButton.heightAnchor.constraint(equalToConstant: 24),
+            // 标题约束 - 在一条水平线上
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 22),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 18),
             
-            // 标题约束
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 32),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 32),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -32),
+            // 关闭按钮约束 - 在一条水平线上，与标题保持至少18的距离
+            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -18),
+            
+            // 标题和关闭按钮之间的最小距离约束
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: closeButton.leadingAnchor, constant: -18),
         ])
         
         // 根据是否有副标题调整密码输入视图的位置
         let passwordTopAnchor: NSLayoutYAxisAnchor
         if subtitleText != nil {
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-            subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 32).isActive = true
-            subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -32).isActive = true
+            subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 18).isActive = true
+            subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -18).isActive = true
             passwordTopAnchor = subtitleLabel.bottomAnchor
         } else {
             passwordTopAnchor = titleLabel.bottomAnchor
         }
         
         NSLayoutConstraint.activate([
-            // 错误标签约束
-            errorLabel.topAnchor.constraint(equalTo: passwordTopAnchor, constant: 16),
-            errorLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 32),
-            errorLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -32),
-            
             // 密码输入视图约束
-            passwordInputView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 16),
+            passwordInputView.topAnchor.constraint(equalTo: passwordTopAnchor, constant: 27.5),
             passwordInputView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            passwordInputView.widthAnchor.constraint(equalToConstant: CGFloat(passwordLength * 44 + (passwordLength - 1) * 12)),
-            passwordInputView.heightAnchor.constraint(equalToConstant: 44),
+            passwordInputView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 21),
+            passwordInputView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -21),
+            passwordInputView.heightAnchor.constraint(equalToConstant: 45),
+            
+            // 错误标签约束 - 放在密码输入视图左下角
+            errorLabel.leadingAnchor.constraint(equalTo: passwordInputView.leadingAnchor),
+            errorLabel.topAnchor.constraint(equalTo: passwordInputView.bottomAnchor, constant: 10),
             
             // 忘记密码按钮约束 - 在密码输入视图右下角
             forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordInputView.trailingAnchor),
-            forgotPasswordButton.topAnchor.constraint(equalTo: passwordInputView.bottomAnchor, constant: 12),
+            forgotPasswordButton.topAnchor.constraint(equalTo: passwordInputView.bottomAnchor, constant: 32.5),
             
             // 加载背景视图约束 - 居中在整个页面中
             loadingBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -353,12 +365,25 @@ public class PasswordInputViewController: UIViewController {
             // 活动指示器约束 - 居中在背景视图中
             activityIndicator.centerXAnchor.constraint(equalTo: loadingBackgroundView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: loadingBackgroundView.centerYAnchor),
-
-            // 键盘约束 - 使用灵活的高度约束
-            keyboardView.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 16),
-            keyboardView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            keyboardView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            keyboardView.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+        ])
+        
+        // 键盘背景容器约束
+        NSLayoutConstraint.activate([
+            // 键盘背景容器从忘记密码按钮下方开始，延伸到容器底部
+            keyboardBackgroundView.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 22.5),
+            keyboardBackgroundView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            keyboardBackgroundView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            keyboardBackgroundView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+        ])
+        
+        // 安全键盘约束 - 在背景容器内，设置内边距
+        let keyboardPadding: CGFloat = 8
+        NSLayoutConstraint.activate([
+            keyboardView.topAnchor.constraint(equalTo: keyboardBackgroundView.topAnchor, constant: keyboardPadding),
+            keyboardView.leadingAnchor.constraint(equalTo: keyboardBackgroundView.leadingAnchor, constant: keyboardPadding),
+            keyboardView.trailingAnchor.constraint(equalTo: keyboardBackgroundView.trailingAnchor, constant: -keyboardPadding),
+            keyboardView.bottomAnchor.constraint(equalTo: keyboardBackgroundView.safeAreaLayoutGuide.bottomAnchor, constant: -keyboardPadding),
+            keyboardView.heightAnchor.constraint(equalToConstant: 54.5 * 4 + 21)
         ])
     }
     
@@ -383,9 +408,7 @@ public class PasswordInputViewController: UIViewController {
     }
     
     @objc private func forgotPasswordTapped() {
-        if let forgotHandler = forgotPasswordHandler {
-            forgotHandler()
-        }
+        forgotPasswordHandler("")
     }
     
     

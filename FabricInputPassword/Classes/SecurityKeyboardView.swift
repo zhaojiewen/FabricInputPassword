@@ -131,7 +131,7 @@ class SecurityKeyboardView: UIView {
         
         // 设置标题
         button.setTitle(number, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Lydigital Number", size: 28)
+        button.titleLabel?.font = UIFont(name: "DIN Alternate Bold", size: 28)
         button.setTitleColor(UIColor(red: 64 / 255.0, green: 66 / 255.0, blue: 70 / 255.0, alpha: 1), for: .normal)
         
         // 设置样式
@@ -159,12 +159,7 @@ class SecurityKeyboardView: UIView {
         let button = UIButton(type: .system)
         
         // 设置删除图标
-        if #available(iOS 13.0, *) {
-            let deleteImage = UIImage(systemName: "delete.left")
-            button.setImage(deleteImage, for: .normal)
-        } else {
-            button.setTitle("删除", for: .normal)
-        }
+        button.setImage(FabricBundle.loadImage(named: "delete"), for: .normal)
         
         button.tintColor = UIColor(red: 64 / 255.0, green: 66 / 255.0, blue: 70 / 255.0, alpha: 1)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -186,9 +181,9 @@ class SecurityKeyboardView: UIView {
     }
     
     private func setupConstraints() {
-        let buttonHeight: CGFloat = 60
-        let buttonSpacing: CGFloat = 12
-        let rowSpacing: CGFloat = 12
+        let buttonHeight: CGFloat = 54.5
+        let buttonSpacing: CGFloat = 7
+        let rowSpacing: CGFloat = 7
         
         // 前9个数字按钮布局 (3x3 九宫格)
         for (index, button) in numberButtons.enumerated() {

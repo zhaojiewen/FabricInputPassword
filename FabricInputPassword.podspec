@@ -32,9 +32,9 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'FabricInputPassword/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'FabricInputPassword' => ['FabricInputPassword/Assets/*.png']
-  # }
+  s.resource_bundles = {
+     'FabricInputPassword' => ['FabricInputPassword/Assets/*.png']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

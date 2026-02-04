@@ -299,11 +299,17 @@ class ViewController: UIViewController {
                                    merSysId: merSysId,
                                    merUserId: merUserId,
                                    merOrderId: merOrderId,
-                                   tranAmt: tranAmt) { token in
+                                   tranAmt: tranAmt,
+                                   forgotPasswordHandler: { link in
+            /// 点击忘记密码
+            /// 跳转WebView
+            
+        }) { token in
             DispatchQueue.main.async {
                 self.updateResultLabel("✅ 验证成功！\nToken: \(token)", color: .systemGreen)
             }
         }
+                                   
     }
     
     @objc func fillDefaultButtonTapped() {

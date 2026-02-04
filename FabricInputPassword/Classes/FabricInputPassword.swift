@@ -24,7 +24,7 @@ public class FabricInputPassword: NSObject {
                                     merUserId: String,
                                     merOrderId: String,
                                     tranAmt: String,
-                                    forgotPasswordHandler: ForgotPasswordHandler? = nil,
+                                    forgotPasswordHandler: @escaping ForgotPasswordHandler,
                                     success: @escaping (String) -> Void){
         
         
@@ -63,16 +63,16 @@ public class FabricInputPassword: NSObject {
                                              passwordLength: Int = 6,
                                              title: String? = "请输入密码",
                                              subtitle: String? = nil,
-                                             forgotPasswordHandler: ForgotPasswordHandler? = nil,
+                                             forgotPasswordHandler: @escaping ForgotPasswordHandler,
                                              asyncValidator: @escaping AsyncPasswordValidator,) {
         let passwordVC = PasswordInputViewController(
             passwordLength: passwordLength,
             title: title,
             subtitle: subtitle,
+            forgotPasswordHandler: forgotPasswordHandler
         )
         
         passwordVC.asyncValidator = asyncValidator
-        passwordVC.forgotPasswordHandler = forgotPasswordHandler
         passwordVC.showInNewWindow(windowLevel: windowLevel, completion: nil)
     }
     
