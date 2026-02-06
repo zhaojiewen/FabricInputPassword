@@ -19,6 +19,7 @@ public class PasswordInputViewController: UIViewController {
     private let passwordLength: Int
     private let titleText: String?
     private let subtitleText: String?
+    private var isAntiScreenshot = false
     
     public var asyncValidator: AsyncPasswordValidator?
     private var cancelValidator: CancelPasswordValidator?
@@ -36,7 +37,7 @@ public class PasswordInputViewController: UIViewController {
     // MARK: - UI组件
     
     private lazy var containerView: UIView = {
-        let view = self.securityView
+        let view = isAntiScreenshot ?  securityView : UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 16
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // 只圆角顶部两个角
@@ -185,14 +186,17 @@ public class PasswordInputViewController: UIViewController {
     ///   - passwordLength: 密码长度，默认为6
     ///   - title: 标题
     ///   - subtitle: 副标题
+    ///   - isAntiScreenshot: 是否防截屏
     ///   - completion: 完成回调，返回输入的密码和验证结果
     public init(passwordLength: Int = 6,
                 title: String? = "请输入余额账户支付密码",
                 subtitle: String? = nil,
+                isAntiScreenshot: Bool = false,
                 forgotPasswordHandler: @escaping ForgotPasswordHandler) {
         self.passwordLength = passwordLength
         self.titleText = title
         self.subtitleText = subtitle
+        self.isAntiScreenshot = isAntiScreenshot
         self.forgotPasswordHandler = forgotPasswordHandler
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .overFullScreen
@@ -218,7 +222,7 @@ public class PasswordInputViewController: UIViewController {
         containerView.transform = CGAffineTransform(translationX: 0, y: view.bounds.height)
         
         // 背景初始透明
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+//        view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -230,7 +234,7 @@ public class PasswordInputViewController: UIViewController {
             self.containerView.transform = .identity
             
             // 背景渐变显示
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         } completion: { _ in
             // 动画完成后，让密码输入视图成为第一响应者
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -248,7 +252,7 @@ public class PasswordInputViewController: UIViewController {
             self.containerView.transform = CGAffineTransform(translationX: 0, y: self.view.bounds.height)
             
             // 背景渐变消失
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+//            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         }
         
         // 视图消失时停止光标闪烁
@@ -264,7 +268,7 @@ public class PasswordInputViewController: UIViewController {
     // MARK: - 设置UI
     
     private func setupUI() {
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        view.backgroundColor = UIColor(rgbaString: "7F807F")
         
         // 添加容器视图
         view.addSubview(containerView)
@@ -553,3 +557,29 @@ extension PasswordInputViewController: SecurityKeyboardViewDelegate {
 }
 
 
+extension UIColor {
+    /// 16 进制 rgba 字符串创建 color
+    /// - Parameter rgbaString: 16 进制 rgba 字符串
+    convenience init(rgbaString: String) {
+        var str = rgbaString
+        if str.contains("#") {
+            str = str.replacingOccurrences(of: "#", with: "0x")
+        }
+        let rgba = strtoul(str.cString(using: .utf8), nil , 16)
+        if str.count == 10 {
+            self.init(
+                red: CGFloat((rgba & 0x00FF0000) >> 16) / 255.0,
+                green: CGFloat((rgba & 0x0000FF00) >> 8) / 255.0,
+                blue: CGFloat(rgba & 0x000000FF) / 255.0,
+                alpha: CGFloat((rgba & 0xFF000000) >> 24) / 255.0
+            )
+        } else {
+            self.init(
+                red: CGFloat((rgba & 0xFF0000) >> 16) / 255.0,
+                green: CGFloat((rgba & 0x00FF00) >> 8) / 255.0,
+                blue: CGFloat(rgba & 0x0000FF) / 255.0,
+                alpha: 1
+            )
+        }
+    }
+}
